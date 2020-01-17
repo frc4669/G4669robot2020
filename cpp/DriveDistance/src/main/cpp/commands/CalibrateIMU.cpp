@@ -7,12 +7,16 @@
 
 #include "commands/CalibrateIMU.h"
 
-CalibrateIMU::CalibrateIMU() {
+CalibrateIMU::CalibrateIMU(Drivetrain* drive) {
   // Use addRequirements() here to declare subsystem dependencies.
+  AddRequirements({drive});
+  drivetrain = drive;
 }
 
 // Called when the command is initially scheduled.
-void CalibrateIMU::Initialize() {}
+void CalibrateIMU::Initialize() {
+  drivetrain->GetIMU().Calibrate();
+}
 
 // Called repeatedly when this Command is scheduled to run
 void CalibrateIMU::Execute() {}

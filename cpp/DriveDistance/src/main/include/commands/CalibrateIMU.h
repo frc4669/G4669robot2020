@@ -10,6 +10,8 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 
+#include "subsystems/Drivetrain.h"
+
 /**
  * An example command.
  *
@@ -18,9 +20,10 @@
  * Command will *not* work!
  */
 class CalibrateIMU
-    : public frc2::CommandHelper<frc2::CommandBase, CalibrateIMU> {
- public:
-  CalibrateIMU();
+    : public frc2::CommandHelper<frc2::CommandBase, CalibrateIMU>
+{
+public:
+  CalibrateIMU(Drivetrain *drive);
 
   void Initialize() override;
 
@@ -29,4 +32,7 @@ class CalibrateIMU
   void End(bool interrupted) override;
 
   bool IsFinished() override;
+
+private:
+  Drivetrain *drivetrain;
 };
