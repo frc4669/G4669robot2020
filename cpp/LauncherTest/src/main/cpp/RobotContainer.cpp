@@ -18,31 +18,37 @@ RobotContainer::RobotContainer() {
   ConfigureButtonBindings();
 
   // Set up default drive command
-  m_drive.SetDefaultCommand(frc2::RunCommand(
+  // m_drive.SetDefaultCommand(frc2::RunCommand(
+      // [this] {
+      //   m_drive.ArcadeDrive(
+      //       m_driverController.GetY(frc::GenericHID::kLeftHand),
+      //       m_driverController.GetX(frc::GenericHID::kRightHand));
+      // },
+      // {&m_drive}));
+
+  m_launcher.SetDefaultCommand(frc2::RunCommand(
       [this] {
-        m_drive.ArcadeDrive(
-            m_driverController.GetY(frc::GenericHID::kLeftHand),
-            m_driverController.GetX(frc::GenericHID::kRightHand));
+        m_launcher.SetVelocity(2000);
       },
-      {&m_drive}));
+      {&m_launcher}));
 }
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
 
-  // Move the arm to 2 radians above horizontal when the 'A' button is pressed.
-  frc2::JoystickButton(&m_driverController, 1)
-      .WhenPressed([this] { m_arm.SetGoal(2_rad); }, {&m_arm});
+  // // Move the arm to 2 radians above horizontal when the 'A' button is pressed.
+  // frc2::JoystickButton(&m_driverController, 1)
+  //     .WhenPressed([this] { m_arm.SetGoal(2_rad); }, {&m_arm});
 
-  // Move the arm to neutral position when the 'B' button is pressed.
-  frc2::JoystickButton(&m_driverController, 1)
-      .WhenPressed([this] { m_arm.SetGoal(ArmConstants::kArmOffset); },
-                   {&m_arm});
+  // // Move the arm to neutral position when the 'B' button is pressed.
+  // frc2::JoystickButton(&m_driverController, 1)
+  //     .WhenPressed([this] { m_arm.SetGoal(ArmConstants::kArmOffset); },
+  //                  {&m_arm});
 
-  // While holding the shoulder button, drive at half speed
-  frc2::JoystickButton(&m_driverController, 6)
-      .WhenPressed([this] { m_drive.SetMaxOutput(.5); })
-      .WhenReleased([this] { m_drive.SetMaxOutput(1); });
+  // // While holding the shoulder button, drive at half speed
+  // frc2::JoystickButton(&m_driverController, 6)
+  //     .WhenPressed([this] { m_drive.SetMaxOutput(.5); })
+  //     .WhenReleased([this] { m_drive.SetMaxOutput(1); });
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {

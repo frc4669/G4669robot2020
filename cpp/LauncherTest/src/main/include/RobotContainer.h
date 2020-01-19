@@ -21,6 +21,7 @@
 #include "Constants.h"
 #include "subsystems/ArmSubsystem.h"
 #include "subsystems/DriveSubsystem.h"
+#include "subsystems/Launcher.h"
 
 namespace ac = AutoConstants;
 
@@ -46,6 +47,8 @@ class RobotContainer {
   // The robot's subsystems
   DriveSubsystem m_drive;
   ArmSubsystem m_arm;
+
+  Launcher m_launcher;
 
   // The chooser for the autonomous routines
 
