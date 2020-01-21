@@ -24,7 +24,7 @@ constexpr int kLeftMotor1Port = 0;
 constexpr int kLeftMotor2Port = 1;
 constexpr int kRightMotor1Port = 2;
 constexpr int kRightMotor2Port = 3;
-constexpr int kLauncherMotorPort = 4;
+constexpr int kLauncherMotorPort = 8;
 
 constexpr int kPIDLoopIdx = 0;
 constexpr int kTimeoutMs = 30;
