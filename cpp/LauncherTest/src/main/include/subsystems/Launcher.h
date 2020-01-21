@@ -9,7 +9,7 @@
 
 #include <frc2/command/SubsystemBase.h>
 
-#include "ctre/Phoenix.h"
+#include <ctre/Phoenix.h>
 #include "Constants.h"
 
 class Launcher : public frc2::SubsystemBase
@@ -40,6 +40,8 @@ public:
    * @param target the target output in terms of velocity
    */
   void SetVelocity(double target);
+
+  void SetPercentOutput(double target);
 
 private:
   // Components (e.g. motor controllers and sensors) should generally be

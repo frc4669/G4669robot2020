@@ -24,7 +24,7 @@ constexpr int kLeftMotor1Port = 0;
 constexpr int kLeftMotor2Port = 1;
 constexpr int kRightMotor1Port = 2;
 constexpr int kRightMotor2Port = 3;
-constexpr int kLauncherMotorPort = 4;
+constexpr int kLauncherMotorPort = 8;
 
 constexpr int kPIDLoopIdx = 0;
 constexpr int kTimeoutMs = 30;
@@ -44,7 +44,7 @@ constexpr double kEncoderDistancePerPulse =
 namespace ArmConstants {
 constexpr int kMotorPort = 4;
 
-constexpr double kP = 1;
+constexpr double kP = 0.5;
 
 // These are fake gains; in actuality these must be determined individually for
 // each robot
