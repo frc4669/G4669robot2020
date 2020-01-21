@@ -44,7 +44,7 @@ constexpr double kEncoderDistancePerPulse =
 namespace ArmConstants {
 constexpr int kMotorPort = 4;
 
-constexpr double kP = 1;
+constexpr double kP = 0.5;
 
 // These are fake gains; in actuality these must be determined individually for
 // each robot
