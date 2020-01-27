@@ -8,9 +8,10 @@
 typedef struct {
     //void println(std::string out){wpi::outs() << out << "\n";}
     void println(char * buf) {printf("%s\n",buf);}
-} SerialType;
+} SerialToUserType;
 
-void delayMicroseconds(double seconds) {
+void delayMicroseconds(double microseconds) {
+    double seconds = microseconds / (1000 * 1000);
     frc::Wait(seconds);
 }
 
@@ -20,4 +21,4 @@ int millis() {
     return time_since_start.count() * 1000;
 }
 
-SerialType Serial;
+SerialToUserType Serial;
