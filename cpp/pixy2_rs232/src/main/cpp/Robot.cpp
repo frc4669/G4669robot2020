@@ -15,7 +15,6 @@
 class Robot : public frc::TimedRobot {
  public:
   Pixy2UART m_pixy;
-  Pixy2CCC<Link2UART> m_pixy_ccc = Pixy2CCC(&m_pixy);
   
   void AutonomousPeriodic() override {
     TeleopPeriodic();
@@ -45,10 +44,10 @@ class Robot : public frc::TimedRobot {
       is_initialized = true;
     }
 
-    uint16_t num_blocks = m_pixy_ccc.getBlocks();
+    uint16_t num_blocks = m_pixy.ccc.getBlocks();
     for (uint16_t i = 0; i < num_blocks; i++) {
       wpi::outs() << "block " << i << "\n";
-      m_pixy_ccc.blocks[i].print();
+      m_pixy.ccc.blocks[i].print();
     }
   }
 
