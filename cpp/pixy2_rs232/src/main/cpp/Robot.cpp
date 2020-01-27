@@ -42,11 +42,11 @@ class Robot : public frc::TimedRobot {
     if (!is_initialized) {
       wpi::outs() << "initializing pixy2...\n";
       m_pixy.init();
+      is_initialized = true;
     }
 
-    uint16_t blocks;
-    blocks = m_pixy_ccc.getBlocks();
-    for (uint16_t i = 0; i < blocks; i++) {
+    uint16_t num_blocks = m_pixy_ccc.getBlocks();
+    for (uint16_t i = 0; i < num_blocks; i++) {
       wpi::outs() << "block " << i << "\n";
       m_pixy_ccc.blocks[i].print();
     }

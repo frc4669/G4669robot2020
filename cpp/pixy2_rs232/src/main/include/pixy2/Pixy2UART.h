@@ -24,6 +24,8 @@
 
 
 #define PIXY_UART_BAUDRATE 19200
+// TMP_BUF_SIZE must always be greater than len used in the below send and recv functions
+#define TMP_BUF_SIZE 256
 
 class Link2UART
 {
@@ -75,8 +77,8 @@ frc::SerialPort m_serial_port = frc::SerialPort(PIXY_UART_BAUDRATE);
     */
    
    //roboRIO implementation
-   static char tmp_buf[1024];
-   int received_bytes = m_serial_port.Read(&tmp_buf[0],std::min(int(len),1024));
+   static char tmp_buf[TMP_BUF_SIZE];
+   int received_bytes = m_serial_port.Read(&tmp_buf[0],std::min(int(len),TMP_BUF_SIZE));
    if (cs) {
      *cs = 0;
    }
@@ -92,8 +94,8 @@ frc::SerialPort m_serial_port = frc::SerialPort(PIXY_UART_BAUDRATE);
   int16_t send(uint8_t *buf, uint8_t len)
   {
     //Serial1.write(buf, len);
-    static char tmp_buf[1024];
-    for (int i =0 ; i < 1024 && i < len; ++i) {
+    static char tmp_buf[TMP_BUF_SIZE];
+    for (int i =0 ; i < TMP_BUF_SIZE && i < len; ++i) {
       tmp_buf[i] = buf[i];
     }
     m_serial_port.Write(&tmp_buf[0], len);
