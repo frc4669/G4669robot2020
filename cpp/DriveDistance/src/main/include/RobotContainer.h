@@ -19,9 +19,6 @@
 #include "Constants.h"
 #include "subsystems/Drivetrain.h"
 
-#include "F310.h"
-
-
 /**
  * This class is where the bulk of the robot should be declared.  Since
  * Command-based is a "declarative" paradigm, very little robot logic should
@@ -39,10 +36,7 @@ class RobotContainer {
   // The driver's controller
   frc::XboxController m_driverController{OIConstants::kDriverControllerPort};
 
-  F310 f310;
-
   // The robot's subsystems and commands are defined here...
-
 
   // The robot's subsystems
   Drivetrain m_drivetrain;

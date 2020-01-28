@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Pixy/Pixy2.h"
+#include "Pixy/Pixy.h"
 
 namespace DistanceUsingPixy{
     void setup();
     void loop();
 
-
+    
 }

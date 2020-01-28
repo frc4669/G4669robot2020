@@ -1,0 +1,4 @@
+See file:///C:/Users/Galil/git/Robot2020/cpp/DriveTest(on%20Totebot)/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt for all output for compileFrcUserProgramReleaseExecutableFrcUserProgramCpp.
+compiling Drivetrain.cpp successful.
+
+Finished compileFrcUserProgramReleaseExecutableFrcUserProgramCpp, see full log file:///C:/Users/Galil/git/Robot2020/cpp/DriveTest(on%20Totebot)/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt.

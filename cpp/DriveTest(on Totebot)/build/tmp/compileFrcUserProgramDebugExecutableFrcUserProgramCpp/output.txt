@@ -1,0 +1,33 @@
+See file:///C:/Users/Galil/git/Robot2020/cpp/DriveTest(on%20Totebot)/build/tmp/compileFrcUserProgramDebugExecutableFrcUserProgramCpp/output.txt for all output for compileFrcUserProgramDebugExecutableFrcUserProgramCpp.
+compiling TestTurn.cpp failed.
+In file included from C:\Users\Galil\git\Robot2020\cpp\DriveTest(on Totebot)\src\main\cpp\commands\TestTurn.cpp:8:0:
+C:\Users\Galil\git\Robot2020\cpp\DriveTest(on Totebot)\src\main\include/commands/TestTurn.h:24:23: error: expected ')' before '*' token
+   TestTurn(DriveTrain * drive);
+                       ^
+C:\Users\Galil\git\Robot2020\cpp\DriveTest(on Totebot)\src\main\cpp\commands\TestTurn.cpp:10:19: error: expected constructor, destructor, or type conversion before '(' token
+ TestTurn::TestTurn(DriveTrain * drive) {
+                   ^
+
+compiling F310.cpp successful.
+
+compiling CalibrateIMU.cpp successful.
+
+compiling TurnToAngle.cpp successful.
+
+compiling ArcadeDrive.cpp successful.
+
+compiling DriveDistanceProfiled.cpp successful.
+
+compiling Robot.cpp successful.
+
+compiling Drivetrain.cpp successful.
+
+compiling Shooter.cpp successful.
+
+compiling Intake.cpp successful.
+
+compiling DriveSubsystem.cpp successful.
+
+compiling RobotContainer.cpp successful.
+
+Finished compileFrcUserProgramDebugExecutableFrcUserProgramCpp, see full log file:///C:/Users/Galil/git/Robot2020/cpp/DriveTest(on%20Totebot)/build/tmp/compileFrcUserProgramDebugExecutableFrcUserProgramCpp/output.txt.

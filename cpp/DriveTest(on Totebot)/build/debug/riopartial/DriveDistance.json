@@ -1,0 +1,9 @@
+[
+  {
+    "artifact": "frcCpp (in project DriveDistance)",
+    "target": "roborio",
+    "component": "frcUserProgram",
+    "debugfile": "frcCpp_roborio.debugconfig",
+    "language": "cpp"
+  }
+]

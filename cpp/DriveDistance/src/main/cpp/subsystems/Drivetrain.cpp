@@ -52,11 +52,6 @@ void Drivetrain::SetMaxOutput(double maxOutput) {
   m_drive.SetMaxOutput(maxOutput);
 }
 
-units::degree_t Drivetrain::GetHeading() {
-  return units::degree_t(std::remainder(m_imu.GetAngle(), 360)) * (DriveConstants::kGyroReversed ? -1.0 : 1.0);
-}
-
-frc::ADIS16470_IMU& Drivetrain::GetIMU()
-{
+frc::ADIS16470_IMU GetIMU() {
   return m_imu;
 }

@@ -13,8 +13,5 @@
     "**/.settings": true,
     "**/.factorypath": true
   },
-  "C_Cpp.default.configurationProvider": "vscode-wpilib",
-  "files.associations": {
-    "cstdint": "cpp"
-  }
+  "C_Cpp.default.configurationProvider": "vscode-wpilib"
 }
