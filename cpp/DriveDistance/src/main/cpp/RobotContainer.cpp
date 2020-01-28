@@ -12,6 +12,8 @@
 
 #include "commands/DriveDistanceProfiled.h"
 
+#include "commands/TurnToAngle.h"
+
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
 
@@ -59,6 +61,8 @@ void RobotContainer::ConfigureButtonBindings() {
 //               {&m_drivetrain})
 //               .BeforeStarting([this]() { m_drivetrain.ResetEncoders(); })
 //               .WithTimeout(10_s));
+
+  f310.redButtonObject.WhenPressed(TurnToAngle{90_deg, &m_drivetrain});
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {

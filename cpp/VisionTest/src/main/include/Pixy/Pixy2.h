@@ -19,6 +19,7 @@
 
 #include "TPixy2.h"
 #include "SPI.h"
+#include <stdint.h>
 
 #define PIXY_SPI_CLOCKRATE       2000000
 

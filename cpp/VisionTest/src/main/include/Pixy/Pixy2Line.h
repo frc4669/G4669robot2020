@@ -16,6 +16,8 @@
 // (TPixy2).  TPixy takes a communication link as a template parameter so that 
 // all communication modes (SPI, I2C and UART) can share the same code.  
 //
+#include <stdint.h>
+#include <stdio.h>
 
 #ifndef _PIXY2LINE_H
 #define _PIXY2LINE_H
