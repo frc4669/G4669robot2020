@@ -58,9 +58,6 @@
 #include "Pixy2CCC.h"
 #include "Pixy2Line.h"
 #include "Pixy2Video.h"
-#include <stdio.h>
-#include <stdint.h>
-#include <frc/SerialPort.h>
 
 struct Version
 {
@@ -68,7 +65,7 @@ struct Version
   {
     char buf[64];
     sprintf(buf, "hardware ver: 0x%x firmware ver: %d.%d.%d %s", hardware, firmwareMajor, firmwareMinor, firmwareBuild, firmwareType);
-    //Serial.println(buf);
+    Serial.println(buf);
   }
   
   uint16_t hardware;
@@ -155,14 +152,14 @@ template <class LinkType> int8_t TPixy2<LinkType>::init(uint32_t arg)
   
   // wait for pixy to be ready -- that is, Pixy takes a second or 2 boot up
   // getVersion is an effective "ping".  We timeout after 5s.
-  for(t0=nt::now()/1000; nt::now()/1000-t0<5000; )
+  for(t0=millis(); millis()-t0<5000; )
   {
     if (getVersion()>=0) // successful version get -> pixy is ready
 	{
       getResolution(); // get resolution so we have it
       return PIXY_RESULT_OK;
     }	  
-    frc::wait(0.0001); // delay for sync
+    delayMicroseconds(5000); // delay for sync
   }
   // timeout
   return PIXY_RESULT_TIMEOUT;

@@ -48,23 +48,9 @@ constexpr double kSecondStageGearRatio = 0.25; //replace with actual number
 constexpr double kThirdStageGearRatio = 0.25; //replace with actual number
 constexpr double kInchesPerTicks = kWheelCircumference / (kTicksPerRotation * kFirstStageGearRatio * kSecondStageGearRatio * kThirdStageGearRatio);
 constexpr double kTicksPerInches = kTicksPerRotation * kFirstStageGearRatio * kSecondStageGearRatio * kThirdStageGearRatio / kWheelCircumference;
-constexpr auto kTurnTolerance = 5_deg; // replace with actual number
-constexpr auto kTurnRateTolerance = 10_deg_per_s; // replace with actual number
-constexpr bool kGyroReversed = false; //replace with actual number
 
-} 
+}  // namespace DriveConstants
 
 namespace OIConstants {
 constexpr int kDriverControllerPort = 1;
-constexpr int kF310 = 2;
-}  
-
-namespace IntakeConstants {
-constexpr int kIntakeMotorPort = 4;
-constexpr int kIntakeJawMotorPort = 5;
-}
-
-namespace ShooterConstants{
-constexpr int kShooterMotorPort = 6;
-constexpr int kServoPort = 0;
-}
+}  // namespace OIConstants

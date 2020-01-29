@@ -19,31 +19,27 @@
 #define _PIXY2UART_H
 
 #include "TPixy2.h"
-#include "SerialLink.h"
-#include <stdint.h>
+#include "Arduino.h"
 
 #define PIXY_UART_BAUDRATE        19200
-
-//Find RoboRio replacements for all serial
 
 class Link2UART
 {
 public:
   int8_t open(uint32_t arg)
   {
-	// if (arg==PIXY_DEFAULT_ARGVAL)
-  //     //Serial1.begin(PIXY_UART_BAUDRATE);
-      
-  //   else
-  //     //Serial1.begin(arg);      
-  //   return 0;
+	if (arg==PIXY_DEFAULT_ARGVAL)
+      Serial1.begin(PIXY_UART_BAUDRATE);
+    else
+      Serial1.begin(arg);      
+    return 0;
   }
 	
   void close()
   {
   }
     
-  int16_t recv(uint8_t *buf, uint8_t len, uint16_t *cs=nullptr)
+  int16_t recv(uint8_t *buf, uint8_t len, uint16_t *cs=NULL)
   {
     uint8_t i, j;
 	int16_t c;
@@ -57,10 +53,10 @@ public:
       {
         if (j==200)
           return -1;
-	    //c = Serial1.read();
+	    c = Serial1.read();
         if (c>=0)
           break;
-        // delayMicroseconds(10);
+        delayMicroseconds(10);
       }
       buf[i] = c; 
 
@@ -72,7 +68,7 @@ public:
     
   int16_t send(uint8_t *buf, uint8_t len)
   {
-    // Serial1.write(buf, len);
+    Serial1.write(buf, len);
     return len;
   }
   	
@@ -81,6 +77,6 @@ private:
 };
 
 
-typedef TPixy2<SerialLink> Pixy2UART;
+typedef TPixy2<Link2UART> Pixy2UART;
 
 #endif
