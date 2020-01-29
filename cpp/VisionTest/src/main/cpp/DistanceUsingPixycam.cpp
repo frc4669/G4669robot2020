@@ -1,4 +1,4 @@
-#include "Pixy/DistanceUsingPixycam.h"
+#include "Pixy/Pixy2UART.h"
 
 /*Calibrate using a tape measure or ruler, set your pixycam 2 foot from the color coded object
  * In the serial monitor, take a few reading of for the width and height.
@@ -31,7 +31,7 @@ int inches;
 //Distance = (widthOfObject * FocalLengthWidth) / pixelsWidth
 //focal length and distance for height is calculated the same way replacing width with height values
 
-Pixy pixy;
+Pixy2UART pixy;
 
 void setup()
 {

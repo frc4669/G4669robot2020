@@ -74,7 +74,14 @@ public:
    */
   void SetMaxOutput(double maxOutput);
 
-  frc::ADIS16470_IMU GetIMU();
+   /**
+   * Returns the heading of the robot.
+   *
+   * @return the robot's heading in degrees, from 180 to 180
+   */
+  units::degree_t GetHeading();
+
+  frc::ADIS16470_IMU& GetIMU();
 
 private:
   // Components (e.g. motor controllers and sensors) should generally be
@@ -87,7 +94,7 @@ private:
   WPI_TalonFX m_rightSlave;
 
   // The robot's IMU
-  frc::ADIS16470_IMU m_imu{};
+  frc::ADIS16470_IMU m_imu;
   // The robot's drive
   frc::DifferentialDrive m_drive{m_leftMaster, m_rightMaster};
 };

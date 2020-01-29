@@ -22,10 +22,10 @@ Launcher::Launcher()
     m_launcher.ConfigPeakOutputForward(1, kTimeoutMs);
     m_launcher.ConfigPeakOutputReverse(-1, kTimeoutMs);
     /* set closed loop gains in slot0 */
-    m_launcher.Config_kF(kPIDLoopIdx, 0.018,   kTimeoutMs);
-    m_launcher.Config_kP(kPIDLoopIdx, 0.15,    kTimeoutMs);
-    m_launcher.Config_kI(kPIDLoopIdx, 0.001,   kTimeoutMs);
-    m_launcher.Config_kD(kPIDLoopIdx, 11,      kTimeoutMs);
+    m_launcher.Config_kF(kPIDLoopIdx, 0.024,  kTimeoutMs);
+    m_launcher.Config_kP(kPIDLoopIdx, 0.08,    kTimeoutMs);
+    m_launcher.Config_kI(kPIDLoopIdx, 0,      kTimeoutMs);
+    m_launcher.Config_kD(kPIDLoopIdx, 0,      kTimeoutMs);
 
     m_launcher.SetInverted(false);
 }

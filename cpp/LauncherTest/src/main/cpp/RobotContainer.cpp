@@ -28,7 +28,7 @@ RobotContainer::RobotContainer() {
 
   m_launcher.SetDefaultCommand(frc2::RunCommand(
       [this] {
-        m_launcher.SetVelocity(40000);
+        m_launcher.SetVelocity(35000);
       },
       {&m_launcher}));
 }
