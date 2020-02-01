@@ -61,6 +61,7 @@
 #include "Pixy2CCC.h"
 #include "Pixy2Line.h"
 #include "Pixy2Video.h"
+#include "stdio.h"
 
 struct Version
 {
@@ -68,7 +69,7 @@ struct Version
   {
     char buf[64];
     sprintf(buf, "hardware ver: 0x%x firmware ver: %d.%d.%d %s", hardware, firmwareMajor, firmwareMinor, firmwareBuild, firmwareType);
-    Serial.println(buf);
+    std::cout << buf;
   }
   
   uint16_t hardware;
@@ -205,7 +206,7 @@ template <class LinkType> int16_t TPixy2<LinkType>::getSync()
       if (j>=4)
       {
 #ifdef PIXY_DEBUG
-        Serial.println("error: no response");
+        std::cout << "error: no response";
 #endif		  
         return PIXY_RESULT_ERROR;
       }
@@ -244,7 +245,7 @@ template <class LinkType> int16_t TPixy2<LinkType>::recvPacket()
     if (csSerial!=csCalc)
     {
 #ifdef PIXY_DEBUG
-      Serial.println("error: checksum");
+      std::cout << "error: checksum";
 #endif
       return PIXY_RESULT_CHECKSUM_ERROR;
     }

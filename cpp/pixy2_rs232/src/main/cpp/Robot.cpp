@@ -45,6 +45,7 @@ class Robot : public frc::TimedRobot {
     }
 
     uint16_t num_blocks = m_pixy.ccc.getBlocks();
+    wpi::outs() << "Num blocks is: " << num_blocks << "\n";
     for (uint16_t i = 0; i < num_blocks; i++) {
       wpi::outs() << "block " << i << "\n";
       m_pixy.ccc.blocks[i].print();
