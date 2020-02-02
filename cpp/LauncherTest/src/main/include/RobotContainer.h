@@ -19,8 +19,6 @@
 #include <frc2/command/WaitUntilCommand.h>
 
 #include "Constants.h"
-#include "subsystems/ArmSubsystem.h"
-#include "subsystems/DriveSubsystem.h"
 #include "subsystems/Launcher.h"
 
 namespace ac = AutoConstants;
@@ -29,7 +27,7 @@ namespace ac = AutoConstants;
  * This class is where the bulk of the robot should be declared.  Since
  * Command-based is a "declarative" paradigm, very little robot logic should
  * actually be handled in the {@link Robot} periodic methods (other than the
- * scheduler calls).  Instead, the structure of the robot (including subsystems,
+ * scheduler calls).  Instead, the structure of 015838the robot (including subsystems,
  * commands, and button mappings) should be declared here.
  */
 class RobotContainer {
@@ -45,9 +43,6 @@ class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
   // The robot's subsystems
-  DriveSubsystem m_drive;
-  ArmSubsystem m_arm;
-
   Launcher m_launcher;
 
   // The chooser for the autonomous routines
