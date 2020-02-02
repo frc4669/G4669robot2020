@@ -35,5 +35,5 @@ void Launcher::SetVelocity(double target)
 
 void Launcher::SetPercentOutput(double target)
 {
-    m_pidController.SetReference(target, rev::ControlType::kCurrent);
+    m_pidController.SetReference(target, rev::ControlType::kVoltage);
 }

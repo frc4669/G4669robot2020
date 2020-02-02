@@ -41,7 +41,7 @@ public:
    */
   void SetVelocity(double target);
 
-  void SetPercentOutput(double target);
+  void SetVoltage(double target);
 
 private:
   // Components (e.g. motor controllers and sensors) should generally be

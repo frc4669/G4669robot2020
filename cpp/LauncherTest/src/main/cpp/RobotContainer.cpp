@@ -6,10 +6,9 @@
 /*----------------------------------------------------------------------------*/
 
 #include "RobotContainer.h"
+#include <frc/SerialPort.h>
+#include <stdio.h>
 
-#include <frc/shuffleboard/Shuffleboard.h>
-#include <frc2/command/button/JoystickButton.h>
-#include <units/units.h>
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
@@ -28,7 +27,8 @@ RobotContainer::RobotContainer() {
 
   m_launcher.SetDefaultCommand(frc2::RunCommand(
       [this] {
-        m_launcher.SetVelocity(40000);
+        m_launcher.SetPercentOutput(0.5);
+        std::cout << "Something";
       },
       {&m_launcher}));
 }
