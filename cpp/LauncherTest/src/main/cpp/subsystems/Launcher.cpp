@@ -6,28 +6,18 @@
 /*----------------------------------------------------------------------------*/
 
 #include "subsystems/Launcher.h"
+#include "Constants.h"
 
-using namespace DriveConstants;
+using namespace LauncherConstants;
 
-Launcher::Launcher()
-    : m_launcher{kLauncherMotorPort}
+Launcher::Launcher() 
+    : m_launcher{kLauncherPort, rev::CANSparkMax::MotorType::kBrushless},
+      m_pidController{m_launcher.GetPIDController()},
+      m_encoder{m_launcher.GetEncoder()}
 {
-    m_launcher.Set(ControlMode::Velocity, 0);
-    m_launcher.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative, 0, kTimeoutMs);
-    m_launcher.SetSensorPhase(false);
-
-    /* set the peak and nominal outputs */
-    m_launcher.ConfigNominalOutputForward(0, kTimeoutMs);
-    m_launcher.ConfigNominalOutputReverse(0, kTimeoutMs);
-    m_launcher.ConfigPeakOutputForward(1, kTimeoutMs);
-    m_launcher.ConfigPeakOutputReverse(-1, kTimeoutMs);
-    /* set closed loop gains in slot0 */
-    m_launcher.Config_kF(kPIDLoopIdx, 0.018,   kTimeoutMs);
-    m_launcher.Config_kP(kPIDLoopIdx, 0.15,    kTimeoutMs);
-    m_launcher.Config_kI(kPIDLoopIdx, 0.001,   kTimeoutMs);
-    m_launcher.Config_kD(kPIDLoopIdx, 11,      kTimeoutMs);
-
-    m_launcher.SetInverted(false);
+    m_pidController.SetP(0.00);
+    m_pidController.SetI(0.00);
+    m_pidController.SetD(0.00);
 }
 
 // This method will be called once per scheduler run
@@ -35,15 +25,15 @@ void Launcher::Periodic() {}
 
 double Launcher::GetEncoderVelocity()
 {
-    return m_launcher.GetSelectedSensorVelocity(kPIDLoopIdx);
+    return m_encoder.GetVelocity();
 }
 
 void Launcher::SetVelocity(double target)
 {
-    m_launcher.Set(ControlMode::Velocity, target);
+    m_pidController.SetReference(target, rev::ControlType::kVelocity);
 }
 
 void Launcher::SetPercentOutput(double target)
 {
-    m_launcher.Set(ControlMode::PercentOutput, target);
+    m_pidController.SetReference(target, rev::ControlType::kCurrent);
 }
