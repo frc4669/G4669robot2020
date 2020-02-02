@@ -9,44 +9,16 @@
 
 #include <frc2/command/SubsystemBase.h>
 
-#include "rev/CANSparkMax.h"
-#include "Constants.h"
-
-class Launcher : public frc2::SubsystemBase
-{
-public:
-  Launcher();
+class ExampleSubsystem : public frc2::SubsystemBase {
+ public:
+  ExampleSubsystem();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
-  void Periodic();
+  void Periodic() override;
 
-  /**
-   * Resets the drive encoders to currently read a position of 0.
-   */
-  void ResetEncoders();
-
-  /**
-   * Gets the velocity of the encoder.
-   *
-   * @return the encoder velocity in ticks per second
-   */
-  double GetEncoderVelocity();
-
-  /**
-   * Sets the output of the launcher
-   *
-   * @param target the target output in terms of velocity
-   */
-  void SetVelocity(double target);
-
-  void SetPercentOutput(double target);
-
-private:
+ private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
-  rev::CANSparkMax m_launcher;
-  rev::CANPIDController m_pidController;
-  rev::CANEncoder m_encoder;
 };

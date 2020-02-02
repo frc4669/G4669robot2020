@@ -7,27 +7,16 @@
 
 #pragma once
 
-#include <frc/XboxController.h>
-#include <frc/smartdashboard/SendableChooser.h>
 #include <frc2/command/Command.h>
-#include <frc2/command/ConditionalCommand.h>
-#include <frc2/command/InstantCommand.h>
-#include <frc2/command/ParallelRaceGroup.h>
-#include <frc2/command/RunCommand.h>
-#include <frc2/command/SequentialCommandGroup.h>
-#include <frc2/command/WaitCommand.h>
-#include <frc2/command/WaitUntilCommand.h>
 
-#include "Constants.h"
-#include "subsystems/Launcher.h"
-
-namespace ac = AutoConstants;
+#include "commands/ExampleCommand.h"
+#include "subsystems/ExampleSubsystem.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
  * Command-based is a "declarative" paradigm, very little robot logic should
  * actually be handled in the {@link Robot} periodic methods (other than the
- * scheduler calls).  Instead, the structure of 015838the robot (including subsystems,
+ * scheduler calls).  Instead, the structure of the robot (including subsystems,
  * commands, and button mappings) should be declared here.
  */
 class RobotContainer {
@@ -37,15 +26,9 @@ class RobotContainer {
   frc2::Command* GetAutonomousCommand();
 
  private:
-  // The driver's controller
-  frc::XboxController m_driverController{OIConstants::kDriverControllerPort};
-
   // The robot's subsystems and commands are defined here...
-
-  // The robot's subsystems
-  Launcher m_launcher;
-
-  // The chooser for the autonomous routines
+  ExampleSubsystem m_subsystem;
+  ExampleCommand m_autonomousCommand;
 
   void ConfigureButtonBindings();
 };

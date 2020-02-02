@@ -38,7 +38,7 @@ constexpr int kEncoderCPR = 1024;
 constexpr double kWheelDiameterInches = 6;
 constexpr double kEncoderDistancePerPulse =
     // Assumes the encoders are directly mounted on the wheel shafts
-    (kWheelDiameterInches * wpi::math::pi) / static_cast<double>(kEncoderCPR);
+    (kWheelDiameterInches * 3.1415) / static_cast<double>(kEncoderCPR);
 }  // namespace DriveConstants
 
 namespace ArmConstants {
@@ -58,7 +58,7 @@ constexpr auto kMaxAcceleration = 10_rad / (1_s * 1_s);
 
 constexpr int kEncoderPorts[]{4, 5};
 constexpr int kEncoderPPR = 256;
-constexpr auto kEncoderDistancePerPulse = 2.0_rad * wpi::math::pi / kEncoderPPR;
+constexpr auto kEncoderDistancePerPulse = 2.0_rad * 3.1415 / kEncoderPPR;
 
 // The offset of the arm from the horizontal in its neutral position,
 // measured from the horizontal
@@ -73,3 +73,7 @@ constexpr auto kAutoShootTimeSeconds = 7_s;
 namespace OIConstants {
 constexpr int kDriverControllerPort = 1;
 }  // namespace OIConstants
+
+namespace LauncherConstants {
+constexpr int kLauncherPort = 9;
+}
