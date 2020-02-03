@@ -47,6 +47,7 @@ private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
   rev::CANSparkMax m_launcher;
+  rev::CANSparkMax m_follower;
   rev::CANPIDController m_pidController;
   rev::CANEncoder m_encoder;
 };

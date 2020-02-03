@@ -76,4 +76,5 @@ constexpr int kDriverControllerPort = 1;
 
 namespace LauncherConstants {
 constexpr int kLauncherPort = 9;
+constexpr int kFollowPort = 8;
 }

@@ -12,16 +12,21 @@ using namespace LauncherConstants;
 
 Launcher::Launcher() 
     : m_launcher{kLauncherPort, rev::CANSparkMax::MotorType::kBrushless},
+      m_follower{kFollowPort, rev::CANSparkMax::MotorType::kBrushless},
       m_pidController{m_launcher.GetPIDController()},
       m_encoder{m_launcher.GetEncoder()}
 {
-    m_pidController.SetP(0.00);
-    m_pidController.SetI(0.00);
-    m_pidController.SetD(0.00);
+    m_launcher.SetInverted(true);
+    m_follower.Follow(m_launcher);
+    m_pidController.SetP(   0.00       );
+    m_pidController.SetI(   0.00       );
+    m_pidController.SetD(   0.00       );
+    m_pidController.SetFF(  0.0001947  );
 }
 
 // This method will be called once per scheduler run
-void Launcher::Periodic() {}
+void Launcher::Periodic() {
+}
 
 double Launcher::GetEncoderVelocity()
 {
@@ -33,7 +38,7 @@ void Launcher::SetVelocity(double target)
     m_pidController.SetReference(target, rev::ControlType::kVelocity);
 }
 
-void Launcher::SetPercentOutput(double target)
+void Launcher::SetVoltage(double target)
 {
     m_pidController.SetReference(target, rev::ControlType::kVoltage);
 }

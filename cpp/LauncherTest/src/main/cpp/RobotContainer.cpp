@@ -7,8 +7,6 @@
 
 #include "RobotContainer.h"
 #include <frc/SerialPort.h>
-#include <stdio.h>
-
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
@@ -27,8 +25,7 @@ RobotContainer::RobotContainer() {
 
   m_launcher.SetDefaultCommand(frc2::RunCommand(
       [this] {
-        m_launcher.SetPercentOutput(0.5);
-        std::cout << "Something";
+        m_launcher.SetVelocity(4500);
       },
       {&m_launcher}));
 }
