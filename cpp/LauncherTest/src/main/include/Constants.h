@@ -75,6 +75,6 @@ constexpr int kDriverControllerPort = 1;
 }  // namespace OIConstants
 
 namespace LauncherConstants {
-constexpr int kLauncherPort = 9;
-constexpr int kFollowPort = 8;
+constexpr int kLauncherPort = 8;
+constexpr int kFollowPort = 9;
 }
