@@ -10,28 +10,22 @@
 #include "commands/ElevatorUp.h"
 #include "Constants.h"
 
-using namespace F310DPadConstants
+using namespace F310DPadConstants;
 
-RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
+RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
 
   // Configure the button bindings
   ConfigureButtonBindings();
+  
 }
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
-  switch F310.getDPadPOV(){
-    case F310_DPAD_UP:
-      ElevatorUp();
-      break;
-    case F310_DPAD_DOWN:
-      ElevatorDown();
-      break;
-  }
+  
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
-  return &m_autonomousCommand;
+  return nullptr;
 }

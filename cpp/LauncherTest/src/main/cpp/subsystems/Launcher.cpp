@@ -18,8 +18,8 @@ Launcher::Launcher()
       m_followerPIDController{m_follower.GetPIDController()},
       m_followerEncoder{m_follower.GetEncoder()}
 {
+    m_follower.Follow(m_launcher,true);
     m_launcher.SetInverted(true);
-    m_follower.Follow(m_launcher, true);
     m_pidController.SetP(   0.00       );
     m_pidController.SetI(   0.00       );
     m_pidController.SetD(   0.00       );
@@ -38,10 +38,9 @@ double Launcher::GetEncoderVelocity()
 void Launcher::SetVelocity(double target)
 {
     m_pidController.SetReference(target, rev::ControlType::kVelocity);
-    
 }
 
 void Launcher::SetVoltage(double target)
 {
-    m_pidController.SetReference(target, rev::ControlType::kVoltage);
+    m_follower.SetInverted(true);
 }

@@ -15,14 +15,14 @@ Drivetrain::Drivetrain()
       m_rightSlave{DriveConstants::kRightMotor2Port}
 {
     m_leftMaster.Config_kP(0, 8);
-    m_leftMaster.Config_kI(0, 0);
-    m_leftMaster.Config_kD(0, 0);
-    m_leftMaster.Config_kF(0, 0.4);
+    m_leftMaster.Config_kI(0, 0.96);
+    m_leftMaster.Config_kD(0, 160);
+    m_leftMaster.Config_kF(0, 0.383625);
 
     m_rightMaster.Config_kP(0, 8);
-    m_rightMaster.Config_kI(0, 0);
-    m_rightMaster.Config_kD(0, 0);
-    m_rightMaster.Config_kF(0, 0.4);
+    m_rightMaster.Config_kI(0, 0.96);
+    m_rightMaster.Config_kD(0, 160);
+    m_rightMaster.Config_kF(0, 0.383625);
 
     m_leftSlave.Set(ControlMode::Follower, DriveConstants::kLeftMotor1Port);
     m_rightSlave.Set(ControlMode::Follower, DriveConstants::kRightMotor1Port);
@@ -37,8 +37,11 @@ void Drivetrain::ArcadeDrive(double fwd, double rot) {
 }
 
 void Drivetrain::DriveForward(double inches) {
-  m_leftMaster.Set(ControlMode::MotionMagic, inches * DriveConstants::kTicksPerInches);
-  m_rightMaster.Set(ControlMode::MotionMagic, inches * DriveConstants::kTicksPerInches);
+  // m_leftMaster.Set(ControlMode::MotionMagic, inches * DriveConstants::kTicksPerInches);
+  // m_rightMaster.Set(ControlMode::MotionMagic, inches * DriveConstants::kTicksPerInches);
+
+  m_rightMaster.Set(ControlMode::PercentOutput, 0.75);
+  m_leftMaster.Set(ControlMode::PercentOutput, 0.75);
 
 }
 
