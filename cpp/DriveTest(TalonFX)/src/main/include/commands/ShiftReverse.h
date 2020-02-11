@@ -19,11 +19,11 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class ShiftForward
-    : public frc2::CommandHelper<frc2::CommandBase, ShiftForward> {
-public:
-  ShiftForward(Drivetrain * drive);
-
+class ShiftReverse
+    : public frc2::CommandHelper<frc2::CommandBase, ShiftReverse> {
+ public:
+  ShiftReverse(Drivetrain * drive);
+  
   void Initialize() override;
 
   void Execute() override;
@@ -31,7 +31,7 @@ public:
   void End(bool interrupted) override;
 
   bool IsFinished() override;
-  
+
 private:
   Drivetrain * drivetrain;
 };

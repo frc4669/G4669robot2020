@@ -10,7 +10,7 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 
-#include "subsystems/Drivetrain.h"
+#include "subsystems/Launcher.h"
 
 /**
  * An example command.
@@ -19,10 +19,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class ShiftForward
-    : public frc2::CommandHelper<frc2::CommandBase, ShiftForward> {
+class RunLauncher
+    : public frc2::CommandHelper<frc2::CommandBase, RunLauncher> {
 public:
-  ShiftForward(Drivetrain * drive);
+  RunLauncher(Launcher * launch);
 
   void Initialize() override;
 
@@ -31,7 +31,8 @@ public:
   void End(bool interrupted) override;
 
   bool IsFinished() override;
-  
+
 private:
-  Drivetrain * drivetrain;
+  Launcher * launcher;
+
 };

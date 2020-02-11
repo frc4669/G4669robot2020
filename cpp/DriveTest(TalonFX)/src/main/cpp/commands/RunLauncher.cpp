@@ -5,31 +5,26 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/DriveForward.h"
-#include "Constants.h"
+#include "commands/RunLauncher.h"
 
-DriveForward::DriveForward(Drivetrain * drive) {
+RunLauncher::RunLauncher(Launcher * launch) {
   // Use addRequirements() here to declare subsystem dependencies.
-  AddRequirements({drive});
-  drivetrain = drive;
+  launcher = launch;
+  AddRequirements({launch});
 }
 
 // Called when the command is initially scheduled.
-void DriveForward::Initialize() {
-  drivetrain->ResetEncoders();
-  
-}
+void RunLauncher::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void DriveForward::Execute() {
-  drivetrain->DriveForward(2);
+void RunLauncher::Execute() {
+  launcher->SetLaunchRPM(5000);
 }
 
 // Called once the command ends or is interrupted.
-void DriveForward::End(bool interrupted) {}
+void RunLauncher::End(bool interrupted) {
+  launcher->SetLaunchRPM(0);
+}
 
 // Returns true when the command should end.
-bool DriveForward::IsFinished() { 
-  return false;
-  //return drivetrain->GetRightEncoderDistance() == 2 * DriveConstants::kTicksPerInches; 
-}
+bool RunLauncher::IsFinished() { return false; }

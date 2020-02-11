@@ -33,11 +33,12 @@ public:
 
 
     frc2::Button greenButtonObject = frc2::Button([this] { return this->getButton(this->green_button); });
-    // frc2::Button redButtonObject{&f310joystick, red_button};
-    // frc2::Button blueButtonObject{&f310joystick, blue_button};
-    // frc2::Button orangeButtonObject{&f310joystick, orange_button};
-    // frc2::Button leftShoulderButtonObject{&f310joystick, left_shoulder_button};
-    // frc2::Button rightShoulderButtonObject{&f310joystick, right_shoulder_button};
+    frc2::Button redButtonObject = frc2::Button([this] { return this->getButton(this->red_button); });
+    frc2::Button blueButtonObject = frc2::Button([this] { return this->getButton(this->blue_button); });
+    frc2::Button orangeButtonObject = frc2::Button([this] { return this->getButton(this->orange_button);} );
+    frc2::Button leftShoulderButtonObject = frc2::Button([this] { return this->getButton(this->left_shoulder_button);} );
+    frc2::Button rightShoulderButtonObject = frc2::Button([this] { return this->getButton(this->right_shoulder_button);} );
+    // unusable until frc library bug fixed VVV
     frc2::JoystickButton backButtonObject{&f310joystick, back_button};
     frc2::JoystickButton startButtonObject{&f310joystick, start_button};
     frc2::JoystickButton leftJoyButtonObject{&f310joystick, left_joy_button};

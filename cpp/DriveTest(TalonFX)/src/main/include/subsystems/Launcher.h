@@ -8,41 +8,30 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
+#include "rev/CANSparkMax.h"
+#include "rev/CANPIDController.h"
 
-class Intake : public frc2::SubsystemBase {
+class Launcher : public frc2::SubsystemBase {
  public:
-  Intake();
+  Launcher();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic();
 
-  // private WPI_TalonSRX intakeMotor;
-  // private DoubleSolenoid deploy;
-  // public Intake() {
-  //   super();
-  //   intakeMotor = new WPI_TalonSRX(Constants.intakeID);
-  //   deploy = new DoubleSolenoid(Constants.deploy1, Constants.deploy2);
-  // }
+  void ConfigurePID();
+ 
+  void SetLaunchRPM(int targetRPM);
 
-  // public void runIntake() {
-  //   intakeMotor.set(ControlMode.PercentOutput, 0.4);
-  // }
-
-  // public void stop() {
-  //   intakeMotor.set(ControlMode.PercentOutput, 0);
-  // }
-
-  // public void deployIntake() {
-  //   deploy.set(DoubleSolenoid.Value.kForward);
-  // }
-  // public void tuckIntake() {
-  //   deploy.set(DoubleSolenoid.Value.kReverse);
-  // }
-
+  void Stop();
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
+
+  rev::CANSparkMax m_leftLaunchMotor;
+  rev::CANSparkMax m_rightLaunchMotor;
+  rev::CANPIDController m_leftPIDController;
+  
 };

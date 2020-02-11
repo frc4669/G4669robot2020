@@ -9,25 +9,16 @@
 #include "Constants.h"
 
 Drivetrain::Drivetrain()
-    : m_leftMaster{DriveConstants::kLeftMotor1Port},
-      m_leftSlave{DriveConstants::kLeftMotor2Port},
-      m_rightMaster{DriveConstants::kRightMotor1Port},
-      m_rightSlave{DriveConstants::kRightMotor2Port},
-      m_shifter{0, 1}
+  : m_leftMaster{DriveConstants::kLeftMotor1Port},
+    m_leftSlave{DriveConstants::kLeftMotor2Port},
+    m_rightMaster{DriveConstants::kRightMotor1Port},
+    m_rightSlave{DriveConstants::kRightMotor2Port},
+    m_shifter{0, 1}
 {
-    m_leftMaster.Config_kP(0, 8);
-    m_leftMaster.Config_kI(0, 0.96);
-    m_leftMaster.Config_kD(0, 300);
-    m_leftMaster.Config_kF(0, 0.383625);
-
-    m_rightMaster.Config_kP(0, 8);
-    m_rightMaster.Config_kI(0, 0.96);
-    m_rightMaster.Config_kD(0, 160);
-    m_rightMaster.Config_kF(0, 0.383625);
-
-    m_leftSlave.Set(ControlMode::Follower, DriveConstants::kLeftMotor1Port);
-    m_rightSlave.Set(ControlMode::Follower, DriveConstants::kRightMotor1Port);
-
+  ConfigMotor(m_leftMaster);
+  ConfigMotor(m_leftSlave);
+  ConfigMotor(m_rightMaster);
+  ConfigMotor(m_rightSlave);
 }
 
 // This method will be called once per scheduler run
@@ -38,9 +29,14 @@ void Drivetrain::ArcadeDrive(double fwd, double rot) {
 }
 
 void Drivetrain::DriveForward(double inches) {
-  m_leftMaster.Set(ControlMode::MotionMagic, inches * DriveConstants::kTicksPerInches);
-  m_rightMaster.Set(ControlMode::MotionMagic, inches * DriveConstants::kTicksPerInches);
+  // m_leftMaster.Set(ControlMode::MotionMagic, inches * DriveConstants::kTicksPerInches);
+  // m_rightMaster.Set(ControlMode::MotionMagic, inches * DriveConstants::kTicksPerInches);
 
+  m_rightSlave.Set(ControlMode::Follower, DriveConstants::kRightMotor1Port);
+  m_leftSlave.Set(ControlMode::Follower, DriveConstants::kLeftMotor1Port);
+
+  m_rightMaster.Set(ControlMode::Velocity, 10000);
+  m_leftMaster.Set(ControlMode::Velocity, 10000);
 }
 
 void Drivetrain::RotateRight(double angle) {
@@ -81,4 +77,15 @@ void Drivetrain::ShiftForward()
 void Drivetrain::ShiftReverse()
 {
   m_shifter.Set(frc::DoubleSolenoid::kReverse);
+}
+
+void Drivetrain::ConfigMotor(WPI_TalonFX &motor)
+{
+  motor.Config_kF(0, 0.048);
+  motor.Config_kP(0, 0.007);
+  motor.Config_kI(0, 0);
+  motor.Config_kD(0, 0);
+  // motor.ConfigMotionCruiseVelocity(55000);
+  motor.ConfigMotionAcceleration(10);
+  motor.SetSafetyEnabled(false);
 }

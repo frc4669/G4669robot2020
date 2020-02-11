@@ -5,31 +5,24 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/DriveForward.h"
-#include "Constants.h"
+#include "commands/ShiftReverse.h"
 
-DriveForward::DriveForward(Drivetrain * drive) {
+ShiftReverse::ShiftReverse(Drivetrain* drive) {
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements({drive});
   drivetrain = drive;
 }
 
 // Called when the command is initially scheduled.
-void DriveForward::Initialize() {
-  drivetrain->ResetEncoders();
-  
+void ShiftReverse::Initialize() {
+  drivetrain->ShiftReverse();
 }
 
 // Called repeatedly when this Command is scheduled to run
-void DriveForward::Execute() {
-  drivetrain->DriveForward(2);
-}
+void ShiftReverse::Execute() {}
 
 // Called once the command ends or is interrupted.
-void DriveForward::End(bool interrupted) {}
+void ShiftReverse::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool DriveForward::IsFinished() { 
-  return false;
-  //return drivetrain->GetRightEncoderDistance() == 2 * DriveConstants::kTicksPerInches; 
-}
+bool ShiftReverse::IsFinished() { return false; }
