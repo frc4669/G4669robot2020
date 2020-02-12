@@ -14,6 +14,7 @@
 #include "ctre/Phoenix.h"
 #include <adi/ADIS16470_IMU.h>
 #include "frc/DoubleSolenoid.h"
+#include "frc/SpeedControllerGroup.h"
 
 class Drivetrain : public frc2::SubsystemBase
 {
@@ -98,10 +99,15 @@ private:
   WPI_TalonFX m_rightMaster;
   WPI_TalonFX m_rightSlave;
 
+  frc::SpeedControllerGroup m_leftMotors{m_leftMaster, m_leftSlave};
+  frc::SpeedControllerGroup m_rightMotors{m_rightMaster, m_rightSlave};
+
   frc::DoubleSolenoid m_shifter;
 
   // The robot's IMU
   frc::ADIS16470_IMU m_imu;
   // The robot's drive
-  frc::DifferentialDrive m_drive{m_leftMaster, m_rightMaster};
+  frc::DifferentialDrive m_drive{m_leftMotors, m_rightMotors};
+
+  void ConfigMotor(WPI_TalonFX &motor);
 };

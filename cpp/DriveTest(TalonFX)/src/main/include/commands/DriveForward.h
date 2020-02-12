@@ -21,7 +21,7 @@
  */
 class DriveForward
     : public frc2::CommandHelper<frc2::CommandBase, DriveForward> {
- public:
+public:
   DriveForward(Drivetrain * drive);
 
   void Initialize() override;
@@ -32,5 +32,7 @@ class DriveForward
 
   bool IsFinished() override;
 
+private:
   Drivetrain * drivetrain;
+  
 };

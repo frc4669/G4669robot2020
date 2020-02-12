@@ -9,13 +9,13 @@
 
 ShiftForward::ShiftForward(Drivetrain * drive) {
   // Use addRequirements() here to declare subsystem dependencies.
-
   AddRequirements({drive});
+  drivetrain = drive;
 }
 
 // Called when the command is initially scheduled.
 void ShiftForward::Initialize() {
-
+  drivetrain->ShiftForward();
 }
 
 // Called repeatedly when this Command is scheduled to run

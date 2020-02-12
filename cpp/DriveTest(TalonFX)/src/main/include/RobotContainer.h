@@ -18,7 +18,7 @@
 
 #include "Constants.h"
 #include "subsystems/Drivetrain.h"
-
+#include "subsystems/Launcher.h"
 #include "F310.h"
 
 
@@ -37,7 +37,6 @@ class RobotContainer {
 
  private:
   // The driver's controller
-  frc::XboxController m_driverController{OIConstants::kDriverControllerPort};
 
   F310 f310;
 
@@ -46,6 +45,8 @@ class RobotContainer {
 
   // The robot's subsystems
   Drivetrain m_drivetrain;
+
+  Launcher m_launcher;
 
   frc2::InstantCommand m_driveHalfSpeed{[this] { m_drivetrain.SetMaxOutput(0.5); },
                                         {}};

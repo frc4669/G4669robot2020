@@ -20,51 +20,55 @@
  */
 
 namespace DriveConstants {
-constexpr int kLeftMotor1Port = 1;
-constexpr int kLeftMotor2Port = 0;
-constexpr int kRightMotor1Port = 3;
-constexpr int kRightMotor2Port = 2;
+  constexpr int kLeftMotor1Port = 1;
+  constexpr int kLeftMotor2Port = 0;
+  constexpr int kRightMotor1Port = 3;
+  constexpr int kRightMotor2Port = 2;
 
-// These are example values only - DO NOT USE THESE FOR YOUR OWN ROBOT!
-// These characterization values MUST be determined either experimentally or
-// theoretically for *your* robot's drive. The RobotPy Characterization
-// Toolsuite provides a convenient tool for obtaining these values for your
-// robot.
-constexpr auto ks = 1_V;
-constexpr auto kv = 0.8_V * 1_s / 1_m;
-constexpr auto ka = 0.15_V * 1_s * 1_s / 1_m;
+  // These are example values only - DO NOT USE THESE FOR YOUR OWN ROBOT!
+  // These characterization values MUST be determined either experimentally or
+  // theoretically for *your* robot's drive. The RobotPy Characterization
+  // Toolsuite provides a convenient tool for obtaining these values for your
+  // robot.
+  constexpr auto ks = 1_V;
+  constexpr auto kv = 0.8_V * 1_s / 1_m;
+  constexpr auto ka = 0.15_V * 1_s * 1_s / 1_m;
 
-constexpr double kp = 1;
+  constexpr double kp = 1;
 
-constexpr auto kMaxSpeed = 3_mps;
-constexpr auto kMaxAcceleration = 3_mps_sq;
+  constexpr auto kMaxSpeed = 3_mps;
+  constexpr auto kMaxAcceleration = 3_mps_sq;
 
-constexpr double kWheelDiameter = 6;
-constexpr double kPi = 3.14159265359;
-constexpr double kTicksPerRotation = 4096; // replace with actual number
-constexpr double kWheelCircumference = kWheelDiameter * kPi;
-constexpr double kFirstStageGearRatio = 0.25; // replace with actual number
-constexpr double kSecondStageGearRatio = 0.25; //replace with actual number
-constexpr double kThirdStageGearRatio = 0.25; //replace with actual number
-constexpr double kInchesPerTicks = kWheelCircumference / (kTicksPerRotation * kFirstStageGearRatio * kSecondStageGearRatio * kThirdStageGearRatio);
-constexpr double kTicksPerInches = kTicksPerRotation * kFirstStageGearRatio * kSecondStageGearRatio * kThirdStageGearRatio / kWheelCircumference;
-constexpr auto kTurnTolerance = 5_deg; // replace with actual number
-constexpr auto kTurnRateTolerance = 10_deg_per_s; // replace with actual number
-constexpr bool kGyroReversed = false; //replace with actual number
+  constexpr double kWheelDiameter = 6;
+  constexpr double kPi = 3.14159265359;
+  constexpr double kTicksPerRotation = 4096; // replace with actual number
+  constexpr double kWheelCircumference = kWheelDiameter * kPi;
+  constexpr double kFirstStageGearRatio = 0.25; // replace with actual number
+  constexpr double kSecondStageGearRatio = 0.25; //replace with actual number
+  constexpr double kThirdStageGearRatio = 0.25; //replace with actual number
+  constexpr double kInchesPerTicks = kWheelCircumference / (kTicksPerRotation * kFirstStageGearRatio * kSecondStageGearRatio * kThirdStageGearRatio);
+  constexpr double kTicksPerInches = kTicksPerRotation * kFirstStageGearRatio * kSecondStageGearRatio * kThirdStageGearRatio / kWheelCircumference;
+  constexpr auto kTurnTolerance = 5_deg; // replace with actual number
+  constexpr auto kTurnRateTolerance = 10_deg_per_s; // replace with actual number
+  constexpr bool kGyroReversed = false; //replace with actual number
 
 } 
 
 namespace OIConstants {
-constexpr int kDriverControllerPort = 1;
-constexpr int kF310 = 1;
+  constexpr int kF310 = 0;
 }  
 
 namespace IntakeConstants {
-constexpr int kIntakeMotorPort = 4;
-constexpr int kIntakeJawMotorPort = 5;
+  constexpr int kIntakeMotorPort = 4;
+  constexpr int kIntakeJawMotorPort = 5;
 }
 
 namespace ShooterConstants{
-constexpr int kShooterMotorPort = 6;
-constexpr int kServoPort = 0;
+  constexpr int kShooterMotorPort = 6;
+  constexpr int kServoPort = 0;
+}
+
+namespace LaunchConstants {
+  constexpr int kLeftLaunchPort = 8;
+  constexpr int kRightLaunchPort = 9;
 }

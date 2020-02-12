@@ -10,10 +10,13 @@
 #include <frc/shuffleboard/Shuffleboard.h>
 #include <frc2/command/button/JoystickButton.h>
 
-#include "commands/DriveDistanceProfiled.h"
-
 #include "commands/TurnToAngle.h"
 #include "commands/DriveForward.h"
+#include "commands/ShiftForward.h"
+#include "commands/ShiftReverse.h"
+#include "commands/RunLauncher.h"
+
+#include <iostream>
 
 RobotContainer::RobotContainer()
 {
@@ -25,7 +28,9 @@ RobotContainer::RobotContainer()
   // Set up default drive command
   m_drivetrain.SetDefaultCommand(frc2::RunCommand(
       [this] {
-        m_drivetrain.ArcadeDrive(-f310.getLeftY() * 0.5, -f310.getRightX() * 0.5);
+        m_drivetrain.ArcadeDrive(-f310.getLeftY() * 0.85, -f310.getRightX() * 0.85);
+        // std::cout << "Left: " << m_drivetrain.GetLeftEncoderDistance() << "\n";
+        // std::cout << "Right: " << m_drivetrain.GetRightEncoderDistance() << "\n\n";
       },
       {&m_drivetrain}));
 
@@ -64,8 +69,12 @@ void RobotContainer::ConfigureButtonBindings() {
 //               .BeforeStarting([this]() { m_drivetrain.ResetEncoders(); })
 //               .WithTimeout(10_s));
 
-  //f310.redButtonObject.WhenPressed(TurnToAngle{90_deg, &m_drivetrain}.WithTimeout(5_s));
-  f310.greenButtonObject.WhenPressed(DriveForward{&m_drivetrain});
+  f310.redButtonObject.WhenPressed(DriveForward{&m_drivetrain});
+  f310.greenButtonObject.WhenPressed(ShiftForward{&m_drivetrain});
+  f310.blueButtonObject.WhenPressed(ShiftReverse{&m_drivetrain});
+  f310.orangeButtonObject.WhenPressed(TurnToAngle{90_deg, &m_drivetrain});
+  
+  f310.rightShoulderButtonObject.WhenHeld(RunLauncher{&m_launcher});
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
