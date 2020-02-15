@@ -12,6 +12,7 @@
 
 class ColorSensor : public frc2::SubsystemBase
 {
+  //try to connect
 
   // these are pre-determined colors
   /*static constexpr*/ frc::Color kBlueTarget = frc::Color(0.143, 0.427, 0.429);
@@ -45,7 +46,7 @@ class ColorSensor : public frc2::SubsystemBase
         colorString = "Unknown";
       } 
       //If some one knows how to print the color string to see if it works please type it here
-      wpi::outs() << "This is just a Test" << colorString << "o-|-<";
+      wpi::outs() << "This is just a Test" << colorString << "o-|-<\n";
     };
 
 
