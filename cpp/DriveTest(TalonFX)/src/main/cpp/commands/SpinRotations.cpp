@@ -5,26 +5,36 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/RunLauncher.h"
+#include "commands/SpinRotations.h"
+#include "Constants.h"
+using namespace SpinnerHookConstants;
 
-RunLauncher::RunLauncher(Launcher * launch) {
+
+SpinRotations::SpinRotations(SpinnerHook * spinHook, int rotations) {
   // Use addRequirements() here to declare subsystem dependencies.
-  launcher = launch;
-  AddRequirements({launch});
+  AddRequirements({spinHook});
+  spinnerHook = spinHook;
+  targetRotations = rotations;
 }
 
 // Called when the command is initially scheduled.
-void RunLauncher::Initialize() {}
+void SpinRotations::Initialize() {
+  spinnerHook->ResetSpinnerPosition();
+}
 
 // Called repeatedly when this Command is scheduled to run
-void RunLauncher::Execute() {
-  launcher->SetVelocity(4500);
+void SpinRotations::Execute() {
+  spinnerHook->Spin();
+  if (std::remainder(spinnerHook->GetSpinnerPosition(), kTicksPerColorWheelRotation) == 0)
+  {
+    currentRotations++;
+  }
 }
 
 // Called once the command ends or is interrupted.
-void RunLauncher::End(bool interrupted) {
-  launcher->SetVelocity(0);
-}
+void SpinRotations::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool RunLauncher::IsFinished() { return false; }
+bool SpinRotations::IsFinished() { 
+  return currentRotations == targetRotations;
+}

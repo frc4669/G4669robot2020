@@ -9,6 +9,7 @@
 
 #include <units/units.h>
 #include <wpi/math>
+#include "frc/util/color.h"
 
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
@@ -59,16 +60,40 @@ namespace OIConstants {
 }  
 
 namespace IntakeConstants {
-  constexpr int kIntakeMotorPort = 4;
-  constexpr int kIntakeJawMotorPort = 5;
+  constexpr int kIntakeMotorPort = 5;
 }
 
-namespace ShooterConstants{
-  constexpr int kShooterMotorPort = 6;
-  constexpr int kServoPort = 0;
+namespace LauncherConstants {
+  constexpr int kLauncherPort = 8;
+  constexpr int kFollowPort = 9;
 }
 
-namespace LaunchConstants {
-  constexpr int kLeftLaunchPort = 8;
-  constexpr int kRightLaunchPort = 9;
+namespace FeederConstants {
+  constexpr int kHopperFeederPort = 6;
+  constexpr int kLauncherFeederPort = 7;
+}
+
+namespace SpinnerHookConstants {
+  constexpr int kSpinnerPort = 5;
+
+  // Color Sensor Target Colors
+  constexpr frc::Color kBlueTarget = frc::Color(0.143, 0.427, 0.429);
+  constexpr frc::Color kGreenTarget = frc::Color(0.197, 0.561, 0.240);
+  constexpr frc::Color kRedTarget = frc::Color(0.561, 0.232, 0.114);
+  constexpr frc::Color kYellowTarget = frc::Color(0.361, 0.524, 0.113);
+
+    
+  constexpr double kPi = 3.14159265359;
+
+  constexpr double kSpinnerDiameter = 4;
+  constexpr double kTicksPerSpinnerRotation = 4096;
+  constexpr double kSpinnerCircumference = kSpinnerDiameter * kPi;
+
+  constexpr double kColorWheelDiameter = 34;
+  constexpr double kColorWheelCircumference = kColorWheelDiameter * kPi;
+
+  constexpr double kInchesPerTicks = kSpinnerCircumference / kTicksPerSpinnerRotation;
+  constexpr double kTicksPerInches = kTicksPerSpinnerRotation / kSpinnerCircumference;
+
+  constexpr double kTicksPerColorWheelRotation = kColorWheelCircumference * kTicksPerInches;
 }

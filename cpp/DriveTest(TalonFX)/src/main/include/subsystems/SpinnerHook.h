@@ -9,49 +9,36 @@
 
 #include <frc2/command/SubsystemBase.h>
 
-#include "rev/CANSparkMax.h"
-#include "Constants.h"
+#include "rev/ColorSensorV3.h"
+#include "rev/ColorMatch.h"
+#include "ctre/Phoenix.h"
 
-class Launcher : public frc2::SubsystemBase
-{
+
+class SpinnerHook : public frc2::SubsystemBase {
  public:
-  Launcher();
+  SpinnerHook();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic();
 
-  /**
-   * Resets the drive encoders to currently read a position of 0.
-   */
-  void ResetEncoders();
+  frc::Color GetDetectedColor();
 
-  /**
-   * Gets the velocity of the encoder.
-   *
-   * @return the encoder velocity in ticks per second
-   */
-  double GetEncoderVelocity();
+  frc::Color GetMatchedColor();
 
-  /**
-   * Sets the output of the launcher
-   *
-   * @param target the target output in terms of velocity
-   */
-  void SetVelocity(double target);
+  void Spin();
 
-  void SetVoltage(double target);
+  void ResetSpinnerPosition();
+
+  double GetSpinnerPosition();
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
-  rev::CANSparkMax m_launcher;
-  rev::CANPIDController m_pidController;
-  rev::CANEncoder m_encoder;
 
-  rev::CANSparkMax m_follower;
-  rev::CANPIDController m_followerPIDController;
-  rev::CANEncoder m_followerEncoder;
+  WPI_TalonSRX m_spinnerMotor;
+  rev::ColorSensorV3 m_colorSensor{frc::I2C::Port::kOnboard};
+  rev::ColorMatch m_colorMatcher;
 
 };

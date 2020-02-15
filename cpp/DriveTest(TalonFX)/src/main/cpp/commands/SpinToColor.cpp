@@ -5,26 +5,32 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/RunLauncher.h"
+#include "commands/SpinToColor.h"
 
-RunLauncher::RunLauncher(Launcher * launch) {
+/*
+Issues:
+- Won't spin to the center of the color section, only to the edge
+*/
+
+SpinToColor::SpinToColor(SpinnerHook * spinHook, frc::Color color) {
   // Use addRequirements() here to declare subsystem dependencies.
-  launcher = launch;
-  AddRequirements({launch});
+  AddRequirements({spinHook});
+  spinnerHook = spinHook;
+  targetColor = color;
 }
 
 // Called when the command is initially scheduled.
-void RunLauncher::Initialize() {}
+void SpinToColor::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void RunLauncher::Execute() {
-  launcher->SetVelocity(4500);
+void SpinToColor::Execute() {
+  spinnerHook->Spin();
 }
 
 // Called once the command ends or is interrupted.
-void RunLauncher::End(bool interrupted) {
-  launcher->SetVelocity(0);
-}
+void SpinToColor::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool RunLauncher::IsFinished() { return false; }
+bool SpinToColor::IsFinished() { 
+  return spinnerHook->GetMatchedColor() == targetColor;
+}

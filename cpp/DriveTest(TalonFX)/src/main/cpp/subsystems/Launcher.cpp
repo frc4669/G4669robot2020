@@ -7,31 +7,40 @@
 
 #include "subsystems/Launcher.h"
 #include "Constants.h"
+
+using namespace LauncherConstants;
+
 Launcher::Launcher() 
-  : m_leftLaunchMotor{LaunchConstants::kLeftLaunchPort, rev::CANSparkMax::MotorType::kBrushless},
-    m_rightLaunchMotor{LaunchConstants::kRightLaunchPort, rev::CANSparkMax::MotorType::kBrushless},
-    m_leftPIDController{m_leftLaunchMotor.GetPIDController()}
-{}
+    : m_launcher{kLauncherPort, rev::CANSparkMax::MotorType::kBrushless},
+      m_pidController{m_launcher.GetPIDController()},
+      m_encoder{m_launcher.GetEncoder()},
+      m_follower{kFollowPort, rev::CANSparkMax::MotorType::kBrushless},
+      m_followerPIDController{m_follower.GetPIDController()},
+      m_followerEncoder{m_follower.GetEncoder()}
+{
+    m_follower.Follow(m_launcher,true);
+    m_launcher.SetInverted(true);
+    m_pidController.SetP(0.00);
+    m_pidController.SetI(0.00);
+    m_pidController.SetD(0.00);
+    m_pidController.SetFF(0.0001947);
+}
 
 // This method will be called once per scheduler run
-void Launcher::Periodic() {}
-
-void Launcher::ConfigurePID() {
-  // set PID coefficients
-  m_leftPIDController.SetP(0);
-  m_leftPIDController.SetI(0);
-  m_leftPIDController.SetD(0);
-  m_leftPIDController.SetIZone(0);
-  m_leftPIDController.SetFF(0.001);
-  m_leftPIDController.SetOutputRange(-1, 1);
+void Launcher::Periodic() {
 }
 
-void Launcher::SetLaunchRPM(int targetRPM) {
-  // int maxRPM = 5700;
-  m_leftPIDController.SetReference(targetRPM, rev::ControlType::kVelocity);
-  m_rightLaunchMotor.Follow(m_leftLaunchMotor, true);
+double Launcher::GetEncoderVelocity()
+{
+    return m_encoder.GetVelocity();
 }
 
-void Launcher::Stop() {
-  SetLaunchRPM(0);
+void Launcher::SetVelocity(double target)
+{
+    m_pidController.SetReference(target, rev::ControlType::kVelocity);
+}
+
+void Launcher::SetVoltage(double target)
+{
+    m_follower.SetInverted(true);
 }

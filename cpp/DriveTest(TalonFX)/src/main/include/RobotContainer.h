@@ -19,6 +19,7 @@
 #include "Constants.h"
 #include "subsystems/Drivetrain.h"
 #include "subsystems/Launcher.h"
+#include "subsystems/SpinnerHook.h"
 #include "F310.h"
 
 
@@ -45,6 +46,8 @@ class RobotContainer {
 
   // The robot's subsystems
   Drivetrain m_drivetrain;
+
+  SpinnerHook m_spinnerHook;
 
   Launcher m_launcher;
 

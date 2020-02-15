@@ -6,8 +6,28 @@
 /*----------------------------------------------------------------------------*/
 
 #include "subsystems/Intake.h"
+#include "Constants.h"
+using namespace IntakeConstants;
 
-Intake::Intake() {}
+Intake::Intake() 
+  : m_intakeMotor{kIntakeMotorPort},
+    m_intakeDeployer{0, 1}
+{}
 
 // This method will be called once per scheduler run
 void Intake::Periodic() {}
+
+void Intake::RunIntake() {
+  m_intakeMotor.Set(ControlMode::PercentOutput, 0.4);
+}
+
+void Intake::StopIntake() {
+  m_intakeMotor.Set(ControlMode::PercentOutput, 0);
+}
+
+void Intake::DeployIntake() {
+  m_intakeDeployer.Set(frc::DoubleSolenoid::kForward);
+}
+void Intake::TuckIntake() {
+  m_intakeDeployer.Set(frc::DoubleSolenoid::kReverse);
+}

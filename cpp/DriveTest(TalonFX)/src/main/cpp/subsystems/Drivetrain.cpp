@@ -7,12 +7,13 @@
 
 #include "subsystems/Drivetrain.h"
 #include "Constants.h"
+using namespace DriveConstants;
 
 Drivetrain::Drivetrain()
-  : m_leftMaster{DriveConstants::kLeftMotor1Port},
-    m_leftSlave{DriveConstants::kLeftMotor2Port},
-    m_rightMaster{DriveConstants::kRightMotor1Port},
-    m_rightSlave{DriveConstants::kRightMotor2Port},
+  : m_leftMaster{kLeftMotor1Port},
+    m_leftSlave{kLeftMotor2Port},
+    m_rightMaster{kRightMotor1Port},
+    m_rightSlave{kRightMotor2Port},
     m_shifter{0, 1}
 {
   ConfigMotor(m_leftMaster);
@@ -39,9 +40,7 @@ void Drivetrain::DriveForward(double inches) {
   m_leftMaster.Set(ControlMode::Velocity, 10000);
 }
 
-void Drivetrain::RotateRight(double angle) {
-  
-}
+void Drivetrain::RotateRight(double angle) {}
 
 void Drivetrain::ResetEncoders() {
   m_leftMaster.GetSensorCollection().SetIntegratedSensorPosition(0);
