@@ -17,14 +17,17 @@ TestTurn::TestTurn(Drivetrain * drive) {
 
 // Called when the command is initially scheduled.
 void TestTurn::Initialize() {
-  drivetrain->DriveForward(10);
+  
 }
 
 // Called repeatedly when this Command is scheduled to run
-void TestTurn::Execute() {}
+void TestTurn::Execute() {
+  drivetrain->DriveForward(10);
+}
 
 // Called once the command ends or is interrupted.
-void TestTurn::End(bool interrupted) {}
+void TestTurn::End(bool interrupted) {
+}
 
 // Returns true when the command should end.
 bool TestTurn::IsFinished() { return false; }

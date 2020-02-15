@@ -9,7 +9,7 @@
 
 #include "frc/Joystick.h"
 #include <frc2/command/button/JoystickButton.h>
-#include "frc2/command/button/POVButton.h"
+#include <frc2/command/button/POVButton.h>
 
 #include "Constants.h"
 

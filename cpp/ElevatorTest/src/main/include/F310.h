@@ -1,4 +1,16 @@
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
+
+#pragma once
+
 #include "frc/Joystick.h"
+#include <frc2/command/button/JoystickButton.h>
+#include <frc2/command/button/POVButton.h>
+
 #include "Constants.h"
 
 class F310
@@ -6,7 +18,7 @@ class F310
 
 public:
 
-    frc::Joystick f310joystick{Constants::F310Port};
+    frc::Joystick f310joystick{F310Port};
 
     const int green_button = 1;
     const int red_button = 2;
@@ -19,16 +31,16 @@ public:
     const int left_joy_button = 9;
     const int right_joy_button = 10;
 
-    frc::JoystickButton greenButtonObject{&f310joystick, green_button};
-    frc::JoystickButton redButtonObject{&f310joystick, red_button};
-	frc::JoystickButton blueButtonObject{&f310joystick, blue_button};
-	frc::JoystickButton orangeButtonObject{&f310joystick, orange_button};
-	frc::JoystickButton leftShoulderButtonObject{&f310joystick, left_shoulder_button};
-	frc::JoystickButton rightShoulderButtonObject{&f310joystick, right_shoulder_button};
-	frc::JoystickButton backButtonObject{&f310joystick, back_button};
-	frc::JoystickButton startButtonObject{&f310joystick, start_button};
-	frc::JoystickButton leftJoyButtonObject{&f310joystick, left_joy_button};
-	frc::JoystickButton rightJoyButtonObject{&f310joystick, right_joy_button};
+    frc2::JoystickButton greenButtonObject{&f310joystick, green_button};
+    frc2::JoystickButton redButtonObject{&f310joystick, red_button};
+    frc2::JoystickButton blueButtonObject{&f310joystick, blue_button};
+    frc2::JoystickButton orangeButtonObject{&f310joystick, orange_button};
+    frc2::JoystickButton leftShoulderButtonObject{&f310joystick, left_shoulder_button};
+    frc2::JoystickButton rightShoulderButtonObject{&f310joystick, right_shoulder_button};
+    frc2::JoystickButton backButtonObject{&f310joystick, back_button};
+    frc2::JoystickButton startButtonObject{&f310joystick, start_button};
+    frc2::JoystickButton leftJoyButtonObject{&f310joystick, left_joy_button};
+    frc2::JoystickButton rightJoyButtonObject{&f310joystick, right_joy_button};
 
     F310();
     double getLeftX();

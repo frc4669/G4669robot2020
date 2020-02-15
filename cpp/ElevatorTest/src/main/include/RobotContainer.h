@@ -12,6 +12,7 @@
 
 #include "commands/ExampleCommand.h"
 #include "commands/ElevatorUp.h"
+#include "commands/ElevatorDown.h"
 
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/Elevator.h"
@@ -25,15 +26,14 @@
  */
 class RobotContainer {
  public:
-  static F310 f310;
+  F310 f310;
   RobotContainer();
 
   frc2::Command* GetAutonomousCommand();
 
  private:
   // The robot's subsystems and commands are defined here...
-  ExampleSubsystem m_subsystem;
-  ExampleCommand m_autonomousCommand;
+  Elevator m_elevator;
 
   void ConfigureButtonBindings();
 };
