@@ -18,7 +18,7 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
 
-  f310.leftShoulderButtonObject.WhenPressed(SpinRotations{&m_spinnerHook, 1});
+  f310.leftShoulderButtonObject.WhenPressed(SpinRotations{&m_spinnerHook, 3});
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {

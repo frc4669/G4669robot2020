@@ -41,7 +41,7 @@ namespace SpinnerHookConstants {
   constexpr double kTicksPerSpinnerRotation = 4096;
   constexpr double kSpinnerCircumference = kSpinnerDiameter * kPi; // in inches
 
-  constexpr double kColorWheelDiameter = 31.5; // in inches, real diameter is 35in
+  constexpr double kColorWheelDiameter = 31; // in inches, real diameter is 35in
   constexpr double kColorWheelCircumference = kColorWheelDiameter * kPi; // in inches
 
   constexpr double kInchesPerTicks = kSpinnerCircumference / kTicksPerSpinnerRotation;

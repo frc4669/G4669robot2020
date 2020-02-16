@@ -37,7 +37,7 @@ void SpinRotations::End(bool interrupted) {
 
 // Returns true when the command should end.
 bool SpinRotations::IsFinished() { 
-  if (spinnerHook->GetError() < 250) // Spinner stops before error is 0
+  if (spinnerHook->GetError() < 100) // Spinner stops before error is 0
   {
     return true;
     std::cout << "WE HAVE SPUN THE COLOR WHEEL ENOUGH TIMES!!\n";

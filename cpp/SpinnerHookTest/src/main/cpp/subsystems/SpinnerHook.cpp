@@ -36,7 +36,7 @@ void SpinnerHook::Init() {
   m_spinnerMotor.ConfigPeakOutputForward(1);
   m_spinnerMotor.ConfigPeakOutputReverse(-1);
 
-  m_spinnerMotor.ConfigMotionCruiseVelocity(1500);
+  m_spinnerMotor.ConfigMotionCruiseVelocity(2500);
   m_spinnerMotor.ConfigMotionAcceleration(1500);
 
   m_spinnerMotor.SetSelectedSensorPosition(0);
@@ -63,7 +63,7 @@ frc::Color SpinnerHook::GetMatchedColor()
 
 void SpinnerHook::Spin()
 {
-  m_spinnerMotor.Set(ControlMode::MotionMagic, kColorWheelCircumference / kSpinnerCircumference * kTicksPerSpinnerRotation);
+  m_spinnerMotor.Set(ControlMode::MotionMagic, kColorWheelCircumference / kSpinnerCircumference * kTicksPerSpinnerRotation * 3.5);
 }
 
 void SpinnerHook::Stop()
