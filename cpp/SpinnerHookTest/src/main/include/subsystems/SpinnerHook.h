@@ -13,6 +13,10 @@
 #include "rev/ColorMatch.h"
 #include "ctre/Phoenix.h"
 
+#include <frc/shuffleboard/ShuffleboardTab.h>
+#include <frc/shuffleboard/Shuffleboard.h>
+#include <networktables/NetworkTableEntry.h>
+
 
 class SpinnerHook : public frc2::SubsystemBase {
  public:
@@ -47,4 +51,7 @@ class SpinnerHook : public frc2::SubsystemBase {
   rev::ColorSensorV3 m_colorSensor{frc::I2C::Port::kOnboard};
   rev::ColorMatch m_colorMatcher;
 
+  nt::NetworkTableEntry redEntry;
+  nt::NetworkTableEntry greenEntry;
+  nt::NetworkTableEntry blueEntry;
 };

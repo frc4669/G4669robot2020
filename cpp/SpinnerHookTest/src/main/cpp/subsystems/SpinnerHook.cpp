@@ -9,6 +9,7 @@
 #include "Constants.h"
 using namespace SpinnerHookConstants;
 
+
 SpinnerHook::SpinnerHook() 
   : m_spinnerMotor{kSpinnerPort}
 {
@@ -43,11 +44,16 @@ void SpinnerHook::Init() {
   m_spinnerMotor.SetSensorPhase(true);
   m_spinnerMotor.ConfigMotionSCurveStrength(0);
   //m_spinnerMotor.SetInverted(true);
+  
 
 }
 
 // This method will be called once per scheduler run
-void SpinnerHook::Periodic() {}
+void SpinnerHook::Periodic() {
+  redEntry = frc::Shuffleboard::GetTab("ColorDetected").Add("Red", this->GetDetectedColor().red).GetEntry();
+  greenEntry = frc::Shuffleboard::GetTab("ColorDetected").Add("Green", this->GetDetectedColor().green).GetEntry();
+  blueEntry = frc::Shuffleboard::GetTab("ColorDetected").Add("Blue", this->GetDetectedColor().blue).GetEntry();
+}
 
 frc::Color SpinnerHook::GetDetectedColor()
 {
@@ -57,7 +63,7 @@ frc::Color SpinnerHook::GetDetectedColor()
 frc::Color SpinnerHook::GetMatchedColor()
 {
   frc::Color detectedColor = m_colorSensor.GetColor();
-  double confidence = 0.0;
+  double confidence = 0.3;
   return m_colorMatcher.MatchClosestColor(detectedColor, confidence);
 }
 
