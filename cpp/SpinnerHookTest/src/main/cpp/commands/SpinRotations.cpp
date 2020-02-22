@@ -22,7 +22,7 @@ void SpinRotations::Initialize() {
   //spinnerHook->ResetSpinnerPosition();
   initialSpinnerTicks = spinnerHook->GetSpinnerPosition();
   spinnerHook->Init();
-  spinnerHook->Spin();
+  spinnerHook->SpinRotations();
 }
 
 // Called repeatedly when this Command is scheduled to run

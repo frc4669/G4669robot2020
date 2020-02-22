@@ -29,10 +29,10 @@ namespace SpinnerHookConstants {
   constexpr int kSpinnerPort = 5;
 
   // Color Sensor Target Colors
-  constexpr frc::Color kBlueTarget = frc::Color(0.143, 0.427, 0.429);
-  constexpr frc::Color kGreenTarget = frc::Color(0.197, 0.561, 0.240);
-  constexpr frc::Color kRedTarget = frc::Color(0.561, 0.232, 0.114);
-  constexpr frc::Color kYellowTarget = frc::Color(0.361, 0.524, 0.113);
+  constexpr frc::Color kBlueTarget = frc::Color(0.177124, 0.466187, 0.356812);
+  constexpr frc::Color kGreenTarget = frc::Color(0.196899, 0.560913, 0.240112);
+  constexpr frc::Color kRedTarget = frc::Color(0.386108, 0.417847, 0.195923);
+  constexpr frc::Color kYellowTarget = frc::Color(0.326050, 0.494507, 0.179321);
 
   
   constexpr double kPi = 3.14159265359; // in radians

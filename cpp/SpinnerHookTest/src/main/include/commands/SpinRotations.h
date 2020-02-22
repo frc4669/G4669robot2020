@@ -39,6 +39,6 @@ class SpinRotations
   double currentRotations;
 
   double initialSpinnerTicks;
-  double currentTicks;
+  
 
 };

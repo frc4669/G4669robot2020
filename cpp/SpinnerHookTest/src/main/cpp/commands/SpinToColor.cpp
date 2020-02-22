@@ -10,10 +10,8 @@
 #include <frc/shuffleboard/ShuffleboardTab.h>
 #include <frc/shuffleboard/Shuffleboard.h>
 
-/*
-Issues:
-- Won't spin to the center of the color section, only to the edge
-*/
+#include <iostream>
+
 
 SpinToColor::SpinToColor(SpinnerHook * spinHook, frc::Color color) {
   // Use addRequirements() here to declare subsystem dependencies.
@@ -27,11 +25,13 @@ void SpinToColor::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void SpinToColor::Execute() {
-  spinnerHook->Spin();
+  spinnerHook->SpinColor();
 }
 
 // Called once the command ends or is interrupted.
-void SpinToColor::End(bool interrupted) {}
+void SpinToColor::End(bool interrupted) {
+  spinnerHook->Stop();
+}
 
 // Returns true when the command should end.
 bool SpinToColor::IsFinished() { 

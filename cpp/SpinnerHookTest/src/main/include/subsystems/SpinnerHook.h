@@ -33,7 +33,9 @@ class SpinnerHook : public frc2::SubsystemBase {
 
   frc::Color GetMatchedColor();
 
-  void Spin();
+  void SpinRotations();
+
+  void SpinColor();
 
   void Stop();
 
@@ -54,4 +56,7 @@ class SpinnerHook : public frc2::SubsystemBase {
   nt::NetworkTableEntry redEntry;
   nt::NetworkTableEntry greenEntry;
   nt::NetworkTableEntry blueEntry;
+  nt::NetworkTableEntry redMatchedEntry;
+  nt::NetworkTableEntry greenMatchedEntry;
+  nt::NetworkTableEntry blueMatchedEntry;
 };

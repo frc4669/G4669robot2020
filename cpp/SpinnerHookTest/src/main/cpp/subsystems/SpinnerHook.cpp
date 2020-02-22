@@ -8,6 +8,7 @@
 #include "subsystems/SpinnerHook.h"
 #include "Constants.h"
 using namespace SpinnerHookConstants;
+#include <iostream>
 
 
 SpinnerHook::SpinnerHook() 
@@ -15,11 +16,19 @@ SpinnerHook::SpinnerHook()
 {
   Init();
 }
+
 void SpinnerHook::Init() {
   m_colorMatcher.AddColorMatch(kBlueTarget);
   m_colorMatcher.AddColorMatch(kGreenTarget);
   m_colorMatcher.AddColorMatch(kRedTarget);
   m_colorMatcher.AddColorMatch(kYellowTarget);
+
+  redEntry = frc::Shuffleboard::GetTab("ColorDetected").Add("Red", 0).GetEntry();
+  greenEntry = frc::Shuffleboard::GetTab("ColorDetected").Add("Green", 0).GetEntry();
+  blueEntry = frc::Shuffleboard::GetTab("ColorDetected").Add("Blue", 0).GetEntry();
+  redMatchedEntry = frc::Shuffleboard::GetTab("ColorDetected").Add("RedMatched", 0).GetEntry();
+  greenMatchedEntry = frc::Shuffleboard::GetTab("ColorDetected").Add("GreenMatched", 0).GetEntry();
+  blueMatchedEntry = frc::Shuffleboard::GetTab("ColorDetected").Add("BlueMatched", 0).GetEntry();
 
   m_spinnerMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder, 0);
 
@@ -37,22 +46,29 @@ void SpinnerHook::Init() {
   m_spinnerMotor.ConfigPeakOutputForward(1);
   m_spinnerMotor.ConfigPeakOutputReverse(-1);
 
-  m_spinnerMotor.ConfigMotionCruiseVelocity(2500);
+  m_spinnerMotor.ConfigMotionCruiseVelocity(1500); // 2500
   m_spinnerMotor.ConfigMotionAcceleration(1500);
 
   m_spinnerMotor.SetSelectedSensorPosition(0);
   m_spinnerMotor.SetSensorPhase(true);
   m_spinnerMotor.ConfigMotionSCurveStrength(0);
-  //m_spinnerMotor.SetInverted(true);
-  
 
 }
 
 // This method will be called once per scheduler run
 void SpinnerHook::Periodic() {
-  redEntry = frc::Shuffleboard::GetTab("ColorDetected").Add("Red", this->GetDetectedColor().red).GetEntry();
-  greenEntry = frc::Shuffleboard::GetTab("ColorDetected").Add("Green", this->GetDetectedColor().green).GetEntry();
-  blueEntry = frc::Shuffleboard::GetTab("ColorDetected").Add("Blue", this->GetDetectedColor().blue).GetEntry();
+  redEntry.SetDouble(this->GetDetectedColor().red);
+  greenEntry.SetDouble(this->GetDetectedColor().green);
+  blueEntry.SetDouble(this->GetDetectedColor().blue);
+
+  redMatchedEntry.SetDouble(this->GetMatchedColor().red);
+  greenMatchedEntry.SetDouble(this->GetMatchedColor().green);
+  blueMatchedEntry.SetDouble(this->GetMatchedColor().blue);
+
+  // std::cout << "red: " << this->GetMatchedColor().red << "\n";
+  // std::cout << "green" << this->GetMatchedColor().green << "\n";
+  // std::cout << "blue " << this->GetMatchedColor().blue << "\n";
+
 }
 
 frc::Color SpinnerHook::GetDetectedColor()
@@ -63,13 +79,18 @@ frc::Color SpinnerHook::GetDetectedColor()
 frc::Color SpinnerHook::GetMatchedColor()
 {
   frc::Color detectedColor = m_colorSensor.GetColor();
-  double confidence = 0.3;
+  double confidence = 0.95;
   return m_colorMatcher.MatchClosestColor(detectedColor, confidence);
 }
 
-void SpinnerHook::Spin()
+void SpinnerHook::SpinRotations()
 {
   m_spinnerMotor.Set(ControlMode::MotionMagic, kColorWheelCircumference / kSpinnerCircumference * kTicksPerSpinnerRotation * 3.5);
+}
+
+void SpinnerHook::SpinColor()
+{
+  m_spinnerMotor.Set(ControlMode::PercentOutput, 0.5);
 }
 
 void SpinnerHook::Stop()
@@ -93,3 +114,5 @@ int SpinnerHook::GetError()
 {
   return m_spinnerMotor.GetClosedLoopError(0);
 }
+
+
