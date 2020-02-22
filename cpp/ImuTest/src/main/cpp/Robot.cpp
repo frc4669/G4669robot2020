@@ -14,7 +14,8 @@
 //IMU is Analog Devices ADIS16470
 //This code comes from https://github.com/juchong/ADIS16470-RoboRIO-Driver-Examples
 //More info about this IMU can be found at https://github.com/juchong/ADIS16470-RoboRIO-Driver
-//Also a high level product blurb is at https://wiki.analog.com/first/first_robotics_donation_resources 
+//Also a high level product blurb is at https://wiki.analog.com/first/first_robotics_donation_resources
+//Yaw Drift Measurements:  https://docs.google.com/spreadsheets/d/1AG2gcYrnayfKUaTXj9PE5sBKZL-FiOYaKebKMqk4KQQ
 
 void Robot::RobotInit() {
   m_autoChooser.SetDefaultOption(kAutoNameDefault, kAutoNameDefault);
