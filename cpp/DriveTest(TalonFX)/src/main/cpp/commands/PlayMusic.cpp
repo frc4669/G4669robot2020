@@ -5,36 +5,20 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/SpinRotations.h"
-#include "Constants.h"
-using namespace SpinnerHookConstants;
+#include "commands/PlayMusic.h"
 
-
-SpinRotations::SpinRotations(SpinnerHook * spinHook, int rotations) {
+PlayMusic::PlayMusic() {
   // Use addRequirements() here to declare subsystem dependencies.
-  AddRequirements({spinHook});
-  spinnerHook = spinHook;
-  targetRotations = rotations;
 }
 
 // Called when the command is initially scheduled.
-void SpinRotations::Initialize() {
-  spinnerHook->ResetSpinnerPosition();
-}
+void PlayMusic::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void SpinRotations::Execute() {
-  spinnerHook->Spin();
-  if (std::remainder(spinnerHook->GetSpinnerPosition(), kTicksPerColorWheelRotation) == 0)
-  {
-    currentRotations++;
-  }
-}
+void PlayMusic::Execute() {}
 
 // Called once the command ends or is interrupted.
-void SpinRotations::End(bool interrupted) {}
+void PlayMusic::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool SpinRotations::IsFinished() { 
-  return currentRotations == targetRotations;
-}
+bool PlayMusic::IsFinished() { return false; }

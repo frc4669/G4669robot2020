@@ -10,8 +10,7 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 
-#include "subsystems/SpinnerHook.h"
-#include "frc/util/color.h"
+#include <subsystems/Drivetrain.h>
 
 /**
  * An example command.
@@ -20,10 +19,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class SpinRotations
-    : public frc2::CommandHelper<frc2::CommandBase, SpinRotations> {
+class PlayMusic
+    : public frc2::CommandHelper<frc2::CommandBase, PlayMusic> {
  public:
-  SpinRotations(SpinnerHook * spinHook, int rotations);
+  PlayMusic();
 
   void Initialize() override;
 
@@ -32,10 +31,4 @@ class SpinRotations
   void End(bool interrupted) override;
 
   bool IsFinished() override;
-
- private:
-  SpinnerHook * spinnerHook;
-  int targetRotations;
-  int currentRotations;
-
 };

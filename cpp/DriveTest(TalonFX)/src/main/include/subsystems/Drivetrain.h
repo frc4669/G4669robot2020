@@ -16,6 +16,8 @@
 #include "frc/DoubleSolenoid.h"
 #include "frc/SpeedControllerGroup.h"
 
+#include <frc/smartdashboard/SendableChooser.h>
+
 class Drivetrain : public frc2::SubsystemBase
 {
  public:
@@ -104,10 +106,21 @@ class Drivetrain : public frc2::SubsystemBase
 
   frc::DoubleSolenoid m_shifter;
 
-  // The robot's IMU
-  frc::ADIS16470_IMU m_imu;
   // The robot's drive
   frc::DifferentialDrive m_drive{m_leftMotors, m_rightMotors};
 
   void ConfigMotor(WPI_TalonFX &motor);
+
+  // The robot's IMU
+  frc::ADIS16470_IMU m_imu{};
+  frc::SendableChooser<std::string> m_yawChooser;
+  const std::string kYawZAxis = "Z-Axis";
+  const std::string kYawXAxis = "X-Axis";
+  const std::string kYawYAxis = "Y-Axis";
+  std::string m_yawSelected;
+  bool m_runCal = false;
+  bool m_configCal = false;
+  bool m_reset = false;
+  bool m_setYawAxis = false;
+  frc::ADIS16470_IMU::IMUAxis m_yawActiveAxis = frc::ADIS16470_IMU::IMUAxis::kZ;
 };

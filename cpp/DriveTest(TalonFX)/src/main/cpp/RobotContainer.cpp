@@ -15,8 +15,6 @@
 #include "commands/ShiftForward.h"
 #include "commands/ShiftReverse.h"
 #include "commands/RunLauncher.h"
-#include "commands/SpinRotations.h"
-#include "commands/SpinToColor.h"
 #include "Constants.h"
 
 #include <iostream>
@@ -73,12 +71,10 @@ void RobotContainer::ConfigureButtonBindings() {
 //               .WithTimeout(10_s));
 
   f310.redButtonObject.WhenPressed(DriveForward{&m_drivetrain});
+  f310.orangeButtonObject.WhenPressed(TurnToAngle{90_deg, &m_drivetrain});
   f310.greenButtonObject.WhenPressed(ShiftForward{&m_drivetrain});
   f310.blueButtonObject.WhenPressed(ShiftReverse{&m_drivetrain});
-  f310.orangeButtonObject.WhenPressed(TurnToAngle{90_deg, &m_drivetrain});
-  f310.leftShoulderButtonObject.WhenPressed(SpinRotations{&m_spinnerHook, 1});
-  f310.leftJoyButtonObject.WhenPressed(SpinToColor{&m_spinnerHook, SpinnerHookConstants::kBlueTarget});
-  
+
   f310.rightShoulderButtonObject.WhenHeld(RunLauncher{&m_launcher});
 }
 

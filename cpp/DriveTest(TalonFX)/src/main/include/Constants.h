@@ -21,10 +21,10 @@
  */
 
 namespace DriveConstants {
-  constexpr int kLeftMotor1Port = 1;
-  constexpr int kLeftMotor2Port = 0;
-  constexpr int kRightMotor1Port = 3;
-  constexpr int kRightMotor2Port = 2;
+  constexpr int kLeftMotor1Port = 14;
+  constexpr int kLeftMotor2Port = 11;
+  constexpr int kRightMotor1Port = 12;
+  constexpr int kRightMotor2Port = 13;
 
   // These are example values only - DO NOT USE THESE FOR YOUR OWN ROBOT!
   // These characterization values MUST be determined either experimentally or
@@ -82,18 +82,18 @@ namespace SpinnerHookConstants {
   constexpr frc::Color kRedTarget = frc::Color(0.561, 0.232, 0.114);
   constexpr frc::Color kYellowTarget = frc::Color(0.361, 0.524, 0.113);
 
-    
-  constexpr double kPi = 3.14159265359;
+  
+  constexpr double kPi = 3.14159265359; // in radians
 
-  constexpr double kSpinnerDiameter = 4;
+  constexpr double kSpinnerDiameter = 4; // in inches
   constexpr double kTicksPerSpinnerRotation = 4096;
-  constexpr double kSpinnerCircumference = kSpinnerDiameter * kPi;
+  constexpr double kSpinnerCircumference = kSpinnerDiameter * kPi; // in inches
 
-  constexpr double kColorWheelDiameter = 34;
-  constexpr double kColorWheelCircumference = kColorWheelDiameter * kPi;
+  constexpr double kColorWheelDiameter = 34; // in inches
+  constexpr double kColorWheelCircumference = kColorWheelDiameter * kPi; // in inches
 
   constexpr double kInchesPerTicks = kSpinnerCircumference / kTicksPerSpinnerRotation;
-  constexpr double kTicksPerInches = kTicksPerSpinnerRotation / kSpinnerCircumference;
+  constexpr double kTicksPerInches = 1 / kInchesPerTicks;
 
   constexpr double kTicksPerColorWheelRotation = kColorWheelCircumference * kTicksPerInches;
 }

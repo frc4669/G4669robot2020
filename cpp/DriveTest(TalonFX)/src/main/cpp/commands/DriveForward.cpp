@@ -17,6 +17,7 @@ DriveForward::DriveForward(Drivetrain * drive) {
 // Called when the command is initially scheduled.
 void DriveForward::Initialize() {
   drivetrain->ResetEncoders();
+  //drivetrain->DriveForward(2);
   
 }
 

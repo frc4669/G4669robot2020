@@ -14,9 +14,7 @@
 
 
 
-void Robot::RobotInit() {
-  
-}
+void Robot::RobotInit() {}
 
 /**
  * This function is called every robot packet, no matter the mode. Use
