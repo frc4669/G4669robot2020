@@ -29,7 +29,7 @@ RobotContainer::RobotContainer()
   // Set up default drive command
   m_drivetrain.SetDefaultCommand(frc2::RunCommand(
       [this] {
-        m_drivetrain.ArcadeDrive(-f310.getLeftY() * 0.85, -f310.getRightX() * 0.85);
+        m_drivetrain.ArcadeDrive(-f310.getLeftY() * 0.65, -f310.getRightX() * 0.65);
         // std::cout << "Left: " << m_drivetrain.GetLeftEncoderDistance() << "\n";
         // std::cout << "Right: " << m_drivetrain.GetRightEncoderDistance() << "\n\n";
       },

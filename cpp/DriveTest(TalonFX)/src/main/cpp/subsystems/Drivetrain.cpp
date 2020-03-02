@@ -38,6 +38,7 @@ Drivetrain::Drivetrain()
 // This method will be called once per scheduler run
 void Drivetrain::Periodic() {
   frc::SmartDashboard::PutNumber("YawAngle", m_imu.GetAngle());
+  frc::SmartDashboard::PutNumber("TurnError", 90-m_imu.GetAngle());
   frc::SmartDashboard::PutNumber("XCompAngle", m_imu.GetXComplementaryAngle());
   frc::SmartDashboard::PutNumber("YCompAngle", m_imu.GetYComplementaryAngle());
   m_runCal = frc::SmartDashboard::GetBoolean("RunCal", false);
@@ -78,25 +79,25 @@ void Drivetrain::Periodic() {
 }
 
 void Drivetrain::ArcadeDrive(double fwd, double rot) {
-  //m_drive.ArcadeDrive(fwd, rot);
+  m_drive.ArcadeDrive(fwd, rot);
 }
 
 void Drivetrain::DriveForward(double inches) {
-  // m_leftMaster.Set(ControlMode::MotionMagic, inches * DriveConstants::kTicksPerInches);
-  // m_rightMaster.Set(ControlMode::MotionMagic, inches * DriveConstants::kTicksPerInches);
+  m_leftMaster.Set(ControlMode::MotionMagic, inches * DriveConstants::kTicksPerInches);
+  m_rightMaster.Set(ControlMode::MotionMagic, inches * DriveConstants::kTicksPerInches);
 
-  // m_rightSlave.Set(ControlMode::Follower, DriveConstants::kRightMotor1Port);
-  // m_leftSlave.Set(ControlMode::Follower, DriveConstants::kLeftMotor1Port);
+  m_rightSlave.Set(ControlMode::Follower, DriveConstants::kRightMotor1Port);
+  m_leftSlave.Set(ControlMode::Follower, DriveConstants::kLeftMotor1Port);
 
   //m_rightSlave.Set(ControlMode::PercentOutput, 0.2);
   //wpi::outs() << m_rightMaster.GetMotorSafety();
-  wpi::outs() << "Expiration is: " << m_rightMaster.GetExpiration() << "\n";
+  //wpi::outs() << "Expiration is: " << m_rightMaster.GetExpiration() << "\n";
   //wpi::outs() << "Time is: " << Timer::GetFPGATimestamp() <<"\n";
   //Timer::GetFPGATimestamp()
-  m_rightMaster.SetExpiration(100.0);
-  m_rightMaster.SetSafetyEnabled(false);
-  m_rightMaster.Set(ControlMode::PercentOutput, 0.2);
-  m_rightSlave.Set(ControlMode::PercentOutput, 0.2);
+  //m_rightMaster.SetExpiration(100.0);
+  //m_rightMaster.SetSafetyEnabled(false);
+  //m_rightMaster.Set(ControlMode::PercentOutput, 0.2);
+  //m_rightSlave.Set(ControlMode::PercentOutput, 0.2);
 
   // m_rightMaster.Set(ControlMode::Velocity, 9000);
   // m_leftMaster.Set(ControlMode::Velocity, 9000);
@@ -118,7 +119,7 @@ double Drivetrain::GetRightEncoderDistance() {
 }
 
 void Drivetrain::SetMaxOutput(double maxOutput) {
-  //m_drive.SetMaxOutput(maxOutput);
+  m_drive.SetMaxOutput(maxOutput);
 }
 
 units::degree_t Drivetrain::GetHeading() {
@@ -147,9 +148,14 @@ void Drivetrain::ConfigMotor(WPI_TalonFX &motor)
   motor.Config_kI(0, 0);
   motor.Config_kD(0, 0.0);
   // motor.ConfigMotionCruiseVelocity(55000);
+  motor.ConfigSupplyCurrentLimit(SupplyCurrentLimitConfiguration(true,25,25,0.5));
+  motor.ConfigStatorCurrentLimit(StatorCurrentLimitConfiguration(true,25,25,0.5));
+  motor.ConfigOpenloopRamp(0.8);
+  motor.ConfigClosedloopRamp(0);
   motor.ConfigMotionAcceleration(10);
-  motor.SetSafetyEnabled(false);
-  motor.SetExpiration(100.0);
+  motor.SetNeutralMode(NeutralMode::Brake);
+  // motor.SetSafetyEnabled(false);
+  motor.SetExpiration(0.1);
 }
 
   // motor.Config_kF(0, 0.048);

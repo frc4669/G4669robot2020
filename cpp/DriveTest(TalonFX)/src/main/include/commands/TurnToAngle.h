@@ -17,5 +17,7 @@ class TurnToAngle
  public:
   TurnToAngle(units::degree_t targetAngle, Drivetrain * drive);
 
+  double tolerance = 3.0; //in degrees
+
   bool IsFinished() override;
 };
