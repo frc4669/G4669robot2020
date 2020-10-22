@@ -28,5 +28,5 @@ class Drivetrain : public frc2::SubsystemBase {
   WPI_TalonSRX m_leftMotor{DriveConstants::kLeftMotorPort};
   WPI_TalonSRX m_rightMotor{DriveConstants::kRightMotorPort};
 
-  frc::DifferentialDrive m_drive{m_leftMotor, m_rightMotor}
+  frc::DifferentialDrive m_drive{m_leftMotor, m_rightMotor};
 };
