@@ -1,0 +1,4 @@
+See file:///C:/Users/Xeus/Desktop/bruh/test%20robot/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt for all output for compileFrcUserProgramReleaseExecutableFrcUserProgramCpp.
+compiling Drivetrain.cpp successful.
+
+Finished compileFrcUserProgramReleaseExecutableFrcUserProgramCpp, see full log file:///C:/Users/Xeus/Desktop/bruh/test%20robot/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt.
