@@ -14,7 +14,9 @@
 
 
 
-void Robot::RobotInit() {}
+void Robot::RobotInit() {
+  
+}
 
 /**
  * This function is called every robot packet, no matter the mode. Use
@@ -64,7 +66,65 @@ void Robot::TeleopInit() {
 /**
  * This function is called periodically during operator control.
  */
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic() {
+
+  // Hi Yasha it works now even though it's a jank way to do it
+  // I know we desperate
+  
+  // if green button held, run intake
+  if(m_container.f310.getButtonPressed(1)) {
+    m_container.m_intake.RunIntake();
+  }
+  if(m_container.f310.getButtonReleased(1)) {
+    m_container.m_intake.StopIntake();
+  }
+
+  // if back button held, run intake
+  if(m_container.f310.getButtonPressed(7)) {
+    m_container.m_intake.DeployIntake();
+  }
+  // if start buttoneh]ef
+  if(m_container.f310.getButtonPressed(8)) {
+    m_container.m_intake.TuckIntake();
+  }
+
+  // if red button held, run feeder
+  if(m_container.f310.getButtonPressed(2)) {
+    m_container.m_feeder.HoldRunLauncherFeeder();
+    m_container.m_feeder.HoldRunHopperFeeder();
+  }
+  if(m_container.f310.getButtonReleased(2)) {
+    m_container.m_feeder.StopHopperFeeder();
+    m_container.m_feeder.StopLauncherFeeder();
+  }
+
+  // if blue button held, run feeder in reverse
+  if(m_container.f310.getButtonPressed(3)) {
+    m_container.m_feeder.HoldRunLauncherFeederRev();
+    m_container.m_feeder.HoldRunHopperFeederRev();
+  }
+  if(m_container.f310.getButtonReleased(3)) {
+    m_container.m_feeder.StopHopperFeeder();
+    m_container.m_feeder.StopLauncherFeeder();
+  }
+
+  // right shoulder to shift up, left shoulder to shift down
+  /* if(m_container.f310.getButtonPressed(m_container.f310.right_shoulder_button)) {
+    m_container.m_drivetrain.ShiftForward();
+  }
+  if(m_container.f310.getButtonPressed(m_container.f310.left_shoulder_button)) {
+    m_container.m_drivetrain.ShiftReverse();
+  } */
+
+  // left joy button held, spin shooter
+  if(m_container.f310.getButtonPressed(m_container.f310.left_shoulder_button)) {
+    m_container.m_launcher.SetVelocity(4750);
+  }
+  if(m_container.f310.getButtonReleased(m_container.f310.left_shoulder_button)) {
+    m_container.m_launcher.SetVelocity(0);
+  }
+  
+}
 
 /**
  * This function is called periodically during test mode.

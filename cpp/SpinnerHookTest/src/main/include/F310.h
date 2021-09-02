@@ -31,18 +31,20 @@ public:
     const int left_joy_button = 9;
     const int right_joy_button = 10;
 
-
     frc2::Button greenButtonObject = frc2::Button([this] { return this->getButton(this->green_button); });
     frc2::Button redButtonObject = frc2::Button([this] { return this->getButton(this->red_button); });
     frc2::Button blueButtonObject = frc2::Button([this] { return this->getButton(this->blue_button); });
     frc2::Button orangeButtonObject = frc2::Button([this] { return this->getButton(this->orange_button);} );
     frc2::Button leftShoulderButtonObject = frc2::Button([this] { return this->getButton(this->left_shoulder_button);} );
     frc2::Button rightShoulderButtonObject = frc2::Button([this] { return this->getButton(this->right_shoulder_button);} );
-    // unusable until frc library bug fixed VVV
-    frc2::JoystickButton backButtonObject{&f310joystick, back_button};
-    frc2::JoystickButton startButtonObject{&f310joystick, start_button};
-    frc2::JoystickButton leftJoyButtonObject{&f310joystick, left_joy_button};
-    frc2::JoystickButton rightJoyButtonObject{&f310joystick, right_joy_button};
+    frc2::Button backButtonObject = frc2::Button([this] { return this->getButton(this->back_button);} );
+    frc2::Button startButtonObject = frc2::Button([this] { return this->getButton(this->start_button);} );
+    frc2::Button leftJoyButtonObject = frc2::Button([this] { return this->getButton(this->left_joy_button);} );
+    frc2::Button rightJoyButtonObject = frc2::Button([this] { return this->getButton(this->right_joy_button);} );
+
+    // The above syntax for buttons were changed to adjust for a bug in frc library
+    // This is a example of it properly used: 
+    // frc2::Button rightJoyButtonObject{&f310joystick, right_joy_button};
 
     F310();
     double getLeftX();

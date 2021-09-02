@@ -38,10 +38,16 @@ class Robot : public frc::TimedRobot {
     //do pixy2 stuff
     //init if not initialized
     static bool is_initialized = false;
+    static bool is_lamp_on = false;
     if (!is_initialized) {
       wpi::outs() << "initializing pixy2...\n";
       m_pixy.init();
       is_initialized = true;
+    }
+
+    if(is_initialized && !is_lamp_on) {
+      m_pixy.setLamp(255,255);
+      is_lamp_on = true;
     }
 
     uint16_t num_blocks = m_pixy.ccc.getBlocks();

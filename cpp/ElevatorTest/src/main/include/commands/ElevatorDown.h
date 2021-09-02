@@ -13,7 +13,7 @@
 #include "subsystems/Elevator.h"
 
 /**
- * An example command that uses an example subsystem.
+ * An example command.
  *
  * <p>Note that this extends CommandHelper, rather extending CommandBase
  * directly; this is crucially important, or else the decorator functions in
@@ -22,13 +22,15 @@
 class ElevatorDown
     : public frc2::CommandHelper<frc2::CommandBase, ElevatorDown> {
  public:
-  /**
-   * Creates a new ExampleCommand.
-   *
-   * @param subsystem The subsystem used by this command.
-   */
-  explicit ElevatorDown(Elevator* m_elevator);
+  ElevatorDown(Elevator * elev);
 
- private:
-  Elevator* m_elevator;
+  void Initialize() override;
+
+  void Execute() override;
+
+  void End(bool interrupted) override;
+
+  bool IsFinished() override;
+
+  Elevator * elevator;
 };

@@ -21,6 +21,8 @@
 #include "Constants.h"
 #include "subsystems/Drivetrain.h"
 #include "subsystems/Launcher.h"
+#include "subsystems/Feeder.h"
+#include "subsystems/Intake.h"
 #include "F310.h"
 
 
@@ -36,19 +38,26 @@ class RobotContainer {
   RobotContainer();
 
   frc2::Command* GetAutonomousCommand();
+  
+  F310 f310;
+
+  Drivetrain m_drivetrain;
+
+  Launcher m_launcher;
+
+  Feeder m_feeder;
+
+  Intake m_intake;
 
  private:
   // The driver's controller
 
-  F310 f310;
-
+  
   // The robot's subsystems and commands are defined here...
 
 
   // The robot's subsystems
-  Drivetrain m_drivetrain;
-
-  Launcher m_launcher;
+  
 
   frc2::InstantCommand m_driveHalfSpeed{[this] { m_drivetrain.SetMaxOutput(0.5); },
                                         {}};

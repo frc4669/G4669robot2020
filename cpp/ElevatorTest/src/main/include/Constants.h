@@ -17,15 +17,27 @@
  * they are needed.
  */
 
-constexpr int F310Port = 2;
-
-namespace ElevatorConstants{
-constexpr int kElevatorMotorPort = 9;
+namespace OIConstants {
+  constexpr int kF310 = 0;
 }
 
-namespace F310DPadConstants{
-constexpr int F310_DPAD_UP = 0;
-constexpr int F310_DPAD_LEFT = 90;
-constexpr int F310_DPAD_DOWN = 180;
-constexpr int F310_DPAD_RIGHT = 270;
+namespace ElevatorConstants {
+  constexpr int kElevatorMotorPort = 5;
+  constexpr int kElevatorMotor2Port = 8;
+
+  constexpr double kTicksPerRotation = 4096;
+  constexpr double kInchesPerRotation = 10; // Replace with actual value
+
+  constexpr double kInchesPerTicks =  kInchesPerRotation / kTicksPerRotation;
+  constexpr double kTicksPerInches = 1 / kInchesPerTicks;
+
+  constexpr int kServoChannel = 0;
+
 }
+
+// namespace F310DPadConstants{
+// constexpr int F310_DPAD_UP = 0;
+// constexpr int F310_DPAD_LEFT = 90;
+// constexpr int F310_DPAD_DOWN = 180;
+// constexpr int F310_DPAD_RIGHT = 270;
+// }

@@ -6,10 +6,31 @@
 /*----------------------------------------------------------------------------*/
 
 #include "commands/ElevatorUp.h"
-#include "Robot.h"
 
-ElevatorUp::ElevatorUp(Elevator * m_elevator) {
+ElevatorUp::ElevatorUp(Elevator * elev) {
   // Use addRequirements() here to declare subsystem dependencies.
-  AddRequirements({m_elevator});
-  m_elevator->GoUp();
+  AddRequirements({elev});
+  elevator = elev;
+}
+
+// Called when the command is initially scheduled.
+void ElevatorUp::Initialize() {
+  elevator->ResetEncoders();
+}
+
+// Called repeatedly when this Command is scheduled to run
+void ElevatorUp::Execute() {
+  elevator->GoUp();
+}
+
+// Called once the command ends or is interrupted.
+void ElevatorUp::End(bool interrupted) {
+  elevator->Stop();  
+  elevator->ResetEncoders();
+}
+
+// Returns true when the command should end.
+bool ElevatorUp::IsFinished() { 
+  return abs(elevator->GetElevatorPosition()) >= 10000 || abs(elevator->GetElevatorPosition()) >= 10000;
+  //return false;
 }

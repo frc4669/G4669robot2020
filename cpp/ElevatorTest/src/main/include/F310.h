@@ -9,7 +9,7 @@
 
 #include "frc/Joystick.h"
 #include <frc2/command/button/JoystickButton.h>
-#include <frc2/command/button/POVButton.h>
+#include "frc2/command/button/POVButton.h"
 
 #include "Constants.h"
 
@@ -18,7 +18,7 @@ class F310
 
 public:
 
-    frc::Joystick f310joystick{F310Port};
+    frc::Joystick f310joystick{OIConstants::kF310};
 
     const int green_button = 1;
     const int red_button = 2;
@@ -31,16 +31,23 @@ public:
     const int left_joy_button = 9;
     const int right_joy_button = 10;
 
-    frc2::JoystickButton greenButtonObject{&f310joystick, green_button};
-    frc2::JoystickButton redButtonObject{&f310joystick, red_button};
-    frc2::JoystickButton blueButtonObject{&f310joystick, blue_button};
-    frc2::JoystickButton orangeButtonObject{&f310joystick, orange_button};
-    frc2::JoystickButton leftShoulderButtonObject{&f310joystick, left_shoulder_button};
-    frc2::JoystickButton rightShoulderButtonObject{&f310joystick, right_shoulder_button};
-    frc2::JoystickButton backButtonObject{&f310joystick, back_button};
-    frc2::JoystickButton startButtonObject{&f310joystick, start_button};
-    frc2::JoystickButton leftJoyButtonObject{&f310joystick, left_joy_button};
-    frc2::JoystickButton rightJoyButtonObject{&f310joystick, right_joy_button};
+
+    frc2::Button greenButtonObject = frc2::Button([this] { return this->getButton(this->green_button); });
+    frc2::Button redButtonObject = frc2::Button([this] { return this->getButton(this->red_button); });
+    frc2::Button blueButtonObject = frc2::Button([this] { return this->getButton(this->blue_button); });
+    frc2::Button orangeButtonObject = frc2::Button([this] { return this->getButton(this->orange_button);} );
+    frc2::Button leftShoulderButtonObject = frc2::Button([this] { return this->getButton(this->left_shoulder_button);} );
+    frc2::Button rightShoulderButtonObject = frc2::Button([this] { return this->getButton(this->right_shoulder_button);} );
+    frc2::Button backButtonObject = frc2::Button([this] { return this->getButton(this->back_button);} );
+    frc2::Button startButtonObject = frc2::Button([this] { return this->getButton(this->start_button);} );
+    frc2::Button leftJoyButtonObject = frc2::Button([this] { return this->getButton(this->left_joy_button);} );
+    frc2::Button rightJoyButtonObject = frc2::Button([this] { return this->getButton(this->right_joy_button);} );
+    frc2::Button upPOVButtonObject = frc2::Button([this] { return this->getButton(this->getDPadPOV() == 0);} );
+    frc2::Button downPOVButtonObject = frc2::Button([this] { return this->getButton(this->getDPadPOV() == 180);} );
+
+    // The above syntax for buttons were changed to adjust for a bug in frc library
+    // This is a example of it properly used: 
+    // frc2::Button rightJoyButtonObject{&f310joystick, right_joy_button};
 
     F310();
     double getLeftX();

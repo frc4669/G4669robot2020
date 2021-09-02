@@ -48,4 +48,14 @@ namespace SpinnerHookConstants {
   constexpr double kTicksPerInches = 1 / kInchesPerTicks;
 
   constexpr double kTicksPerColorWheelRotation = kColorWheelCircumference * kTicksPerInches;
+
+  const std::string kBlueOption = "Blue";
+  const std::string kGreenOption = "Green";
+  const std::string kRedOption = "Red";
+  const std::string kYellowOption = "Yellow";
+  
+}
+
+namespace DistanceSensorConstants {
+  constexpr int sensorBaudRate = 115200;
 }

@@ -26,7 +26,7 @@
  */
 class RobotContainer {
  public:
-  F310 f310;
+  
   RobotContainer();
 
   frc2::Command* GetAutonomousCommand();
@@ -34,6 +34,6 @@ class RobotContainer {
  private:
   // The robot's subsystems and commands are defined here...
   Elevator m_elevator;
-
+  F310 f310;
   void ConfigureButtonBindings();
 };

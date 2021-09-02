@@ -15,14 +15,18 @@
 
 #include <frc/shuffleboard/ShuffleboardTab.h>
 #include <frc/shuffleboard/Shuffleboard.h>
+#include <frc/smartdashboard/SendableChooser.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 #include <networktables/NetworkTableEntry.h>
+
+#include "ArduinoCommunicator.h"
 
 
 class SpinnerHook : public frc2::SubsystemBase {
  public:
   SpinnerHook();
 
-  void Init();
+  void InitSpinner();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -33,17 +37,20 @@ class SpinnerHook : public frc2::SubsystemBase {
 
   frc::Color GetMatchedColor();
 
-  void SpinRotations();
+  void SpinRotations(double rot);
 
   void SpinColor();
 
-  void Stop();
+  void StopSpinner();
 
   void ResetSpinnerPosition();
 
   double GetSpinnerPosition();
 
   int GetError();
+
+  // Selected color from Shuffleboard/SmartDashBoard
+  frc::Color GetSelectedColor();
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be
@@ -52,6 +59,7 @@ class SpinnerHook : public frc2::SubsystemBase {
   WPI_TalonSRX m_spinnerMotor;
   rev::ColorSensorV3 m_colorSensor{frc::I2C::Port::kOnboard};
   rev::ColorMatch m_colorMatcher;
+  ArduinoCommunicator m_distanceSensor;
 
   nt::NetworkTableEntry redEntry;
   nt::NetworkTableEntry greenEntry;
@@ -59,4 +67,8 @@ class SpinnerHook : public frc2::SubsystemBase {
   nt::NetworkTableEntry redMatchedEntry;
   nt::NetworkTableEntry greenMatchedEntry;
   nt::NetworkTableEntry blueMatchedEntry;
+
+  frc::SendableChooser<std::string> colorChooser;
+  frc::Color colorSelected;
+
 };

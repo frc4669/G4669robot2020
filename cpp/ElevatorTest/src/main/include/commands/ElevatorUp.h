@@ -9,11 +9,10 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-
 #include "subsystems/Elevator.h"
 
 /**
- * An example command that uses an example subsystem.
+ * An example command.
  *
  * <p>Note that this extends CommandHelper, rather extending CommandBase
  * directly; this is crucially important, or else the decorator functions in
@@ -22,13 +21,16 @@
 class ElevatorUp
     : public frc2::CommandHelper<frc2::CommandBase, ElevatorUp> {
  public:
-  /**
-   * Creates a new ExampleCommand.
-   *
-   * @param subsystem The subsystem used by this command.
-   */
-  explicit ElevatorUp(Elevator* m_elevator);
+  ElevatorUp(Elevator * elev);
+
+  void Initialize() override;
+
+  void Execute() override;
+
+  void End(bool interrupted) override;
+
+  bool IsFinished() override;
 
  private:
-  Elevator* m_elevator;
+  Elevator * elevator;
 };

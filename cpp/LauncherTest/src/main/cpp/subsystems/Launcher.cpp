@@ -20,10 +20,10 @@ Launcher::Launcher()
 {
     m_follower.Follow(m_launcher,true);
     m_launcher.SetInverted(true);
-    m_pidController.SetP(   0.00       );
-    m_pidController.SetI(   0.00       );
-    m_pidController.SetD(   0.00       );
-    m_pidController.SetFF(  0.0001947  );
+    m_pidController.SetP(0.00);
+    m_pidController.SetI(0.00);
+    m_pidController.SetD(0.00);
+    m_pidController.SetFF(0.0001947);
 }
 
 // This method will be called once per scheduler run
@@ -42,5 +42,5 @@ void Launcher::SetVelocity(double target)
 
 void Launcher::SetVoltage(double target)
 {
-    m_follower.SetInverted(true);
+    m_pidController.SetReference(target, rev::ControlType::kVoltage);
 }

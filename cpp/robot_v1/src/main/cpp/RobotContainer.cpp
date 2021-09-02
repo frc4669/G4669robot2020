@@ -6,6 +6,15 @@
 /*----------------------------------------------------------------------------*/
 
 #include "RobotContainer.h"
+#include "commands/SpinRotations.h"
+#include "commands/SpinToColor.h"
+
+#include "Constants.h"
+
+#include <frc/shuffleboard/ShuffleboardTab.h>
+#include <frc/shuffleboard/Shuffleboard.h>
+#include <networktables/NetworkTableEntry.h>
+
 
 RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   // Initialize all of your commands and subsystems here
@@ -16,6 +25,9 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
+
+  f310.leftShoulderButtonObject.WhenPressed(SpinRotations{&m_spinnerHook, 3.5});
+  f310.rightShoulderButtonObject.WhenPressed(SpinToColor{&m_spinnerHook, m_spinnerHook.GetSelectedColor()});
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {

@@ -26,8 +26,8 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
 
-  f310.leftShoulderButtonObject.WhenPressed(SpinRotations{&m_spinnerHook, 3});
-  f310.rightShoulderButtonObject.WhenPressed(SpinToColor{&m_spinnerHook, SpinnerHookConstants::kBlueTarget});
+  f310.leftShoulderButtonObject.WhenPressed(SpinRotations{&m_spinnerHook, 3.5});
+  f310.rightShoulderButtonObject.WhenPressed(SpinToColor{&m_spinnerHook, m_spinnerHook.GetSelectedColor()});
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {

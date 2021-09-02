@@ -8,7 +8,7 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
-
+#include <frc/Servo.h>
 #include "ctre/Phoenix.h"
 #include "Constants.h"
 
@@ -50,10 +50,24 @@ public:
    */ 
   void GoDown();
 
+  /**
+   * Stops elevator.
+   */ 
+  void Stop();
+
+  void ResetEncoders();
+
+  int GetElevatorPosition();
+
+  void SetServoAngle(double angle);
+
 private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
   
   WPI_TalonSRX m_elevatorMotor;
+  WPI_TalonSRX m_elevatorMotor2; // follows m_elevatorMotor
+
+  frc::Servo m_servo{ElevatorConstants::kServoChannel};
 
 };

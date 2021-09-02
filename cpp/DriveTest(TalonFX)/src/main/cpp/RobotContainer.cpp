@@ -15,6 +15,13 @@
 #include "commands/ShiftForward.h"
 #include "commands/ShiftReverse.h"
 #include "commands/RunLauncher.h"
+#include "commands/RunFeeder.h"
+#include "commands/HoldRunFeeder.h"
+#include "commands/DeployIntake.h"
+#include "commands/TuckIntake.h"
+#include "commands/RunIntake.h"
+#include "commands/RunFeederAndLauncher.h"
+#include "commands/HoldRunFeederRev.h"
 #include "Constants.h"
 
 #include <iostream>
@@ -70,12 +77,21 @@ void RobotContainer::ConfigureButtonBindings() {
 //               .BeforeStarting([this]() { m_drivetrain.ResetEncoders(); })
 //               .WithTimeout(10_s));
 
-  f310.redButtonObject.WhenPressed(DriveForward{&m_drivetrain});
+/*   f310.redButtonObject.WhenPressed(DriveForward{&m_drivetrain});
   f310.orangeButtonObject.WhenPressed(TurnToAngle{90_deg, &m_drivetrain});
+  // f310.greenButtonObject.WhenHeld(HoldRunFeederRev{&m_feeder});
   f310.greenButtonObject.WhenPressed(ShiftForward{&m_drivetrain});
   f310.blueButtonObject.WhenPressed(ShiftReverse{&m_drivetrain});
 
-  f310.rightShoulderButtonObject.WhenHeld(RunLauncher{&m_launcher});
+  f310.backButtonObject.WhenHeld(RunLauncher{&m_launcher});
+  f310.startButtonObject.WhenHeld(HoldRunFeeder{&m_feeder});
+  f310.leftShoulderButtonObject.WhenPressed(RunFeeder{&m_feeder});
+  // f310.greenButtonObject.WhenHeld(frc2::SequentialCommandGroup{RunLauncher{&m_launcher}.WithTimeout(1_s), RunFeederAndLauncher{&m_feeder, &m_launcher}});
+
+  f310.rightShoulderButtonObject.WhenHeld(RunIntake{&m_intake});
+  f310.rightJoyButtonObject.WhenPressed(DeployIntake{&m_intake});
+  f310.leftJoyButtonObject.WhenPressed(TuckIntake{&m_intake});
+  */
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
