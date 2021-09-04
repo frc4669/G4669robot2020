@@ -12,6 +12,8 @@
 
 #include "RobotContainer.h"
 
+#include "ctre/Phoenix.h"
+
 class Robot : public frc::TimedRobot {
  public:
   void RobotInit() override;
@@ -30,4 +32,6 @@ class Robot : public frc::TimedRobot {
   frc2::Command* m_autonomousCommand = nullptr;
 
   RobotContainer m_container;
+
+  Orchestra m_musicPlayer;
 };

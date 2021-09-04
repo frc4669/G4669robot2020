@@ -91,15 +91,18 @@ class Drivetrain : public frc2::SubsystemBase
 
   void ShiftReverse();
 
+
+  WPI_TalonFX m_leftMaster;
+  WPI_TalonFX m_leftSlave;
+  WPI_TalonFX m_rightMaster;
+  WPI_TalonFX m_rightSlave;
+
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 
   // The motor controllers
-  WPI_TalonFX m_leftMaster;
-  WPI_TalonFX m_leftSlave;
-  WPI_TalonFX m_rightMaster;
-  WPI_TalonFX m_rightSlave;
+  
 
   frc::SpeedControllerGroup m_leftMotors{m_leftMaster, m_leftSlave};
   frc::SpeedControllerGroup m_rightMotors{m_rightMaster, m_rightSlave};

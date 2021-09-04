@@ -61,6 +61,13 @@ void Robot::TeleopInit() {
     m_autonomousCommand->Cancel();
     m_autonomousCommand = nullptr;
   }
+
+  std::string musicPath = "C:/Users/Galil/git/Robot2020/cpp/DriveTest(TalonFX)/src/main/deploy/US Anthem.chrp";
+  m_musicPlayer.LoadMusic(musicPath);
+  m_musicPlayer.AddInstrument(m_container.m_drivetrain.m_leftMaster);
+  m_musicPlayer.AddInstrument(m_container.m_drivetrain.m_rightMaster);
+  m_musicPlayer.AddInstrument(m_container.m_drivetrain.m_leftSlave);
+  m_musicPlayer.AddInstrument(m_container.m_drivetrain.m_rightSlave);
 }
 
 /**
@@ -109,21 +116,26 @@ void Robot::TeleopPeriodic() {
   }
 
   // right shoulder to shift up, left shoulder to shift down
-  /* if(m_container.f310.getButtonPressed(m_container.f310.right_shoulder_button)) {
+  if(m_container.f310.getButtonPressed(m_container.f310.left_joy_button)) {
     m_container.m_drivetrain.ShiftForward();
   }
-  if(m_container.f310.getButtonPressed(m_container.f310.left_shoulder_button)) {
+  if(m_container.f310.getButtonPressed(m_container.f310.right_joy_button)) {
     m_container.m_drivetrain.ShiftReverse();
-  } */
+  }
 
   // left joy button held, spin shooter
   if(m_container.f310.getButtonPressed(m_container.f310.left_shoulder_button)) {
-    m_container.m_launcher.SetVelocity(4750);
+    m_container.m_launcher.SetVelocity(4400);
   }
   if(m_container.f310.getButtonReleased(m_container.f310.left_shoulder_button)) {
     m_container.m_launcher.SetVelocity(0);
   }
   
+  if (m_container.f310.getButtonPressed(m_container.f310.right_joy_button))
+  {
+    m_musicPlayer.Play();
+  }
+
 }
 
 /**
