@@ -6,6 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 #include "Robot.h"
+#include <iostream>
 
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
@@ -63,7 +64,17 @@ void Robot::TeleopInit() {
 /**
  * This function is called periodically during operator control.
  */
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic() {
+  if(m_container.f310.getButtonPressed(m_container.f310.right_shoulder_button)) {
+    m_container.m_drivetrain.speedMultiplier += 0.1;
+    std::cout << "Increased speed to: " << m_container.m_drivetrain.speedMultiplier;
+  }
+  if(m_container.f310.getButtonPressed(m_container.f310.left_shoulder_button)) {
+    m_container.m_drivetrain.speedMultiplier -= 0.1;
+    std::cout << "Decreased speed to: " << m_container.m_drivetrain.speedMultiplier;
+  }
+  
+}
 
 /**
  * This function is called periodically during test mode.

@@ -18,6 +18,7 @@ class Drivetrain : public frc2::SubsystemBase
 {
 public:
   Drivetrain();
+  double speedMultiplier = 0.55;
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.

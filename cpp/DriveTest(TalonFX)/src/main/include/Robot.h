@@ -33,5 +33,5 @@ class Robot : public frc::TimedRobot {
 
   RobotContainer m_container;
 
-  Orchestra m_musicPlayer;
+  //Orchestra m_musicPlayer;
 };

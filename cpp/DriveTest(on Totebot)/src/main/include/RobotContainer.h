@@ -33,19 +33,19 @@ class RobotContainer {
  public:
   RobotContainer();
 
+  F310 f310;
+  Drivetrain m_drivetrain;
+
   frc2::Command* GetAutonomousCommand();
 
  private:
   // The driver's controller
   frc::XboxController m_driverController{OIConstants::kDriverControllerPort};
 
-  F310 f310;
-
   // The robot's subsystems and commands are defined here...
 
 
   // The robot's subsystems
-  Drivetrain m_drivetrain;
 
   frc2::InstantCommand m_driveHalfSpeed{[this] { m_drivetrain.SetMaxOutput(0.5); },
                                         {}};

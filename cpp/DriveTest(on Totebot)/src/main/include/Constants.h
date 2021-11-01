@@ -39,7 +39,7 @@ constexpr double kp = 1;
 constexpr auto kMaxSpeed = 3_mps;
 constexpr auto kMaxAcceleration = 3_mps_sq;
 
-constexpr double kWheelDiameter = 6;
+constexpr double kWheelDiameter = 4;
 constexpr double kPi = 3.14159265359;
 constexpr double kTicksPerRotation = 4096; // replace with actual number
 constexpr double kWheelCircumference = kWheelDiameter * kPi;

@@ -7,6 +7,7 @@
 
 #include "subsystems/Drivetrain.h"
 #include "Constants.h"
+#include "Robot.h"
 
 Drivetrain::Drivetrain()
     : m_leftMaster{DriveConstants::kLeftMotor1Port},
@@ -33,7 +34,7 @@ Drivetrain::Drivetrain()
 void Drivetrain::Periodic() {}
 
 void Drivetrain::ArcadeDrive(double fwd, double rot) {
-  m_drive.ArcadeDrive(fwd, rot);
+  m_drive.ArcadeDrive(fwd*speedMultiplier, rot*speedMultiplier);
 }
 
 void Drivetrain::DriveForward(double inches) {
